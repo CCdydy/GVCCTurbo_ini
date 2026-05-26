@@ -41,17 +41,20 @@ pdflatex main.tex
 ```
 
 Build artifacts (`*.aux`, `*.bbl`, `*.log`, `main.pdf`) are `.gitignore`'d.
-Only the tagged `main_v1_draft.pdf` snapshot is tracked, for offline review.
+The tagged `main_v2_draft.pdf` snapshot is tracked for offline review.
 
-## Current draft state
+## Current draft state (v2.1)
 
-10 pages: 9 body + 1 references. The page-budget headroom at the
-algorithms track is 8 body + unlimited references, so a single page must
-be cut before final submission. Most likely sources of trim:
+11 pages: 10 body + 1 references at WACV algorithms track (limit 8 body
++ unlimited references). The body is over the budget, but final trimming
+is deferred until figures and supplementary tables land, since those
+will displace text and change the layout. Likely trim sources, when the
+time comes:
 
-- §3.2 (multi-resolution method) prose around the mismatch equation.
-- §5.4 (vectorized RNG) can fold into a footnote.
-- One ablation table can move to supplementary.
+- Move §5.1 Table 6 (joint-oracle diagnostic) to supplementary.
+- Move §5.3 Table 9 (stage-count sweep) to supplementary.
+- Fold §5.4 (vectorized RNG) into a footnote.
+- Move §4.2 per-sequence detail to supplementary.
 
 ## Framing
 
@@ -75,15 +78,29 @@ Section structure:
 
 ## What's still to do before submission
 
-- [ ] Trim 1 page (see suggestions above).
-- [ ] Fill in author + affiliation in `main.tex`.
-- [ ] Add RD curve figure (Tier-1/2/3 LPIPS vs.\ BPP) alongside Table 1.
-- [ ] Add Figure 1 / teaser: GOP block diagram + RD point comparison.
-- [ ] Verify all reference details (some bib entries use `others` as a
-      placeholder author; fill in real authors).
-- [ ] Run full UVG (currently half) to close the BPP-amortization gap
+Ordered roughly by priority. Page length is **not** a current priority --
+final trim happens after figures and supplementary land, since those
+will reshuffle the layout.
+
+- [ ] **Figures.** Teaser/Figure 1 (GOP pipeline block diagram + RD
+      point comparison vs.\ HEVC / DCVC-RT / GLC-Video / paper GVCC).
+      RD curve figure alongside Table 1 (LPIPS vs.\ BPP across all
+      three tiers).
+- [ ] **Full-UVG measurements at 1080p.** Currently the FLF2V and T2V
+      1080p entries are preliminary half-UVG; rerunning the remaining
+      9 GOPs per sequence will close the boundary-amortization gap
       reported in §4.2.
-- [ ] Add per-sequence breakdown table to supplementary.
+- [ ] **Author + affiliation.** Fill in `main.tex` lines 21--30 and
+      the WACV paper ID (`\def\wacvPaperID{*****}`).
+- [ ] **Bibliography hygiene.** Several entries in `main.bib` use
+      `and others` as a placeholder author list (Free-GVC,
+      GLC-Video, GNVC-VD, SPD, etc.); fill in the real authors and
+      publication venue strings from the cited papers.
+- [ ] **Supplementary file.** Per-sequence breakdown tables, all
+      diagnostic-subset ablations (joint oracle, stage-count sweep),
+      vectorized-RNG details, and the qualitative video frames.
+- [ ] **Final layout pass.** Once figures + supplementary land, trim
+      the body to 8 pages by moving overflow into supplementary.
 
 ## Data backing the tables and ablations
 
