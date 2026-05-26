@@ -1,0 +1,52 @@
+{
+  "experiment": "MR-FLF2V S=3 (480x832 -> 720x1280 -> 1080x1920)",
+  "timestamp": "2026-05-25T21:01:14",
+  "note": "Per-GOP JSON was recovered from runtime log (run_mr_flf2v.py BPP KeyError in summary printing crashed AFTER all 63 GOPs computed and printed; bug now fixed). See per_gop_metrics.json.",
+  "config": {
+    "backbone": "Wan2.1-FLF2V-14B-720P",
+    "resolutions": [[480, 832], [720, 1280], [1080, 1920]],
+    "transition_steps": [6, 12],
+    "K_per_stage": [16384, 16384, 16384],
+    "M": 80,
+    "steps": 20,
+    "ddim_tail": 3,
+    "g_scale": 3.0,
+    "flow_shift": 5.0,
+    "ref_codec": "compressai",
+    "ref_quality": 4,
+    "accel": {
+      "vectorized_atom_gen": true,
+      "model_call_skip": "x0_cache",
+      "model_call_period": 2,
+      "transition_warmup": true,
+      "low_target_from_full": true,
+      "method": "mr_dlc1_codebook"
+    },
+    "num_gops_per_seq": 9,
+    "sequences": ["Beauty", "Bosphorus", "HoneyBee", "Jockey", "ReadySteadyGo", "ShakeNDry", "YachtRide"]
+  },
+  "per_sequence_avg": {
+    "Beauty":        {"PSNR": 31.81, "MS_SSIM": 0.8974, "LPIPS": 0.1609, "BPP": 0.00454, "kbps": 150.7, "enc_s": 214.4, "dec_s": 223.8},
+    "Bosphorus":     {"PSNR": 33.77, "MS_SSIM": 0.9501, "LPIPS": 0.0827, "BPP": 0.00630, "kbps": 209.1, "enc_s": 214.2, "dec_s": 223.1},
+    "HoneyBee":      {"PSNR": 35.37, "MS_SSIM": 0.9759, "LPIPS": 0.0457, "BPP": 0.00769, "kbps": 255.3, "enc_s": 215.2, "dec_s": 224.2},
+    "Jockey":        {"PSNR": 33.69, "MS_SSIM": 0.9561, "LPIPS": 0.0899, "BPP": 0.00578, "kbps": 191.6, "enc_s": 214.7, "dec_s": 223.7},
+    "ReadySteadyGo": {"PSNR": 30.53, "MS_SSIM": 0.9522, "LPIPS": 0.0769, "BPP": 0.00799, "kbps": 265.1, "enc_s": 214.7, "dec_s": 223.7},
+    "ShakeNDry":     {"PSNR": 31.95, "MS_SSIM": 0.9152, "LPIPS": 0.1501, "BPP": 0.00910, "kbps": 301.9, "enc_s": 214.9, "dec_s": 224.1},
+    "YachtRide":     {"PSNR": 28.39, "MS_SSIM": 0.9091, "LPIPS": 0.0983, "BPP": 0.00786, "kbps": 260.7, "enc_s": 214.9, "dec_s": 223.8}
+  },
+  "overall": {
+    "n_gops": 63,
+    "PSNR": 32.22,
+    "MS_SSIM": 0.9366,
+    "LPIPS": 0.1007,
+    "BPP": 0.00704,
+    "kbps": 233.5,
+    "enc_s": 214.7,
+    "dec_s": 223.8,
+    "total_s_per_gop": 438.5
+  },
+  "comparison_paper_table2_tier2": {
+    "paper": {"PSNR": 31.7, "LPIPS": 0.117, "BPP": 0.006, "note": "GVCC-FLF2V on full UVG"},
+    "ours_delta": {"PSNR": "+0.52 dB", "LPIPS": "-0.0163 (-14%)", "BPP": "+0.001 (boundary amortization at half UVG)"}
+  }
+}
