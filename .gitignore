@@ -1,0 +1,80 @@
+# Model checkpoints (root and inside experiment dirs)
+Wan2.1-*/
+Wan2.1-*
+checkpoints/
+
+# UVG raw data
+data/
+UVG/
+
+# Experiment outputs
+outputs/
+results*/
+sweep_*/
+codec_benchmark*/
+diagnose_output/
+i2v_experiment*/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.eggs/
+.eggs/
+
+# Environment
+.env
+*.env
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PyTorch checkpoint files
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+wandb/
+
+# Claude Code
+.claude/
+
+# Internal exploration notes (kept locally only; RESEARCH_NOTES.md is the public design doc)
+exp_*/NOTES.md
+exp_v1_mr/REPORT.md
+MEMORY.md
+exp_*/results*/
+exp_*/out_*/
+exp_*/test_*.py
+exp_*/smoke_*.py
+
+# Local /tmp parsing artifacts
+*_parsed.json
+
+# Media outputs
+*.tdcm
+*.mp4
+*.png
+
+# Allow the qualitative demo bundled with the release
+!demo/*.mp4
+!demo/*.png

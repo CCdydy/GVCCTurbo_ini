@@ -1,0 +1,88 @@
+{
+  "experiment": "T2V Unconditional Compression",
+  "timestamp": "2026-05-21T15:22:37.958625",
+  "config": {
+    "model": "Wan2.1-T2V-14B",
+    "prompt": "(empty)",
+    "resolution": "1280x720",
+    "num_gops": 1,
+    "frames_per_gop": 33,
+    "M": 64,
+    "K": 16384,
+    "steps": 20,
+    "ddim_tail": 3,
+    "g_scale": 3.0,
+    "guidance_scale": 1.0,
+    "flow_shift": 3.0,
+    "ref_frame": "none"
+  },
+  "sequences": [
+    {
+      "sequence": "Beauty",
+      "gop_results": [
+        {
+          "sequence": "Beauty",
+          "gop": 0,
+          "PSNR_dB": 31.3,
+          "MS_SSIM": 0.8895,
+          "LPIPS": 0.2178,
+          "BPP": 0.00483,
+          "codebook_bytes": 18360,
+          "ref_bytes": 0,
+          "total_bytes": 18360,
+          "bitrate_kbps": 71.21,
+          "encode_s": 201.1,
+          "decode_s": 172.2,
+          "per_frame_psnr": [
+            29.46,
+            30.33,
+            30.67,
+            30.89,
+            31.01,
+            31.42,
+            31.54,
+            31.52,
+            31.49,
+            31.75,
+            31.9,
+            31.87,
+            31.72,
+            31.65,
+            31.6,
+            31.55,
+            31.61,
+            31.72,
+            31.66,
+            31.52,
+            31.36,
+            31.37,
+            31.37,
+            31.39,
+            31.4,
+            31.39,
+            31.27,
+            31.11,
+            31.07,
+            31.07,
+            31.07,
+            31.05,
+            30.95
+          ]
+        }
+      ],
+      "avg_PSNR": 31.3,
+      "avg_MS_SSIM": 0.8895,
+      "avg_LPIPS": 0.2178,
+      "avg_BPP": 0.00483,
+      "avg_bitrate_kbps": 71.21,
+      "total_bytes": 18360
+    }
+  ],
+  "overall": {
+    "PSNR_dB": 31.3,
+    "MS_SSIM": 0.8895,
+    "LPIPS": 0.2178,
+    "BPP": 0.00483,
+    "bitrate_kbps": 71.21
+  }
+}
