@@ -9,65 +9,92 @@ time is reported per GOP.
 \subsection{The target-domain mismatch and its fix}
 \label{sec:abl-lpraw}
 
-Table~\ref{tab:abl-mr} compares the naive multi-resolution baseline
-(low-stage target via Eq.~\ref{eq:naive-target}) against the unified
-target (Eq.~\ref{eq:lp-target}, our fix) at $S\!=\!2$ on UVG-720p,
-together with a joint-oracle ceiling that uses the encoder's
-ground-truth high-band content at the transition step (a non-deployable
-upper bound that bounds how much the codebook-driven scheme can recover).
+Table~\ref{tab:abl-mr} reports our main multi-resolution ablation on full
+UVG ($7$~sequences~$\times$~$3$~GOPs) at 720p with Wan~2.1-T2V-1.3B.
+All rows share the same codebook hyperparameters ($M\!=\!64$,
+$K\!=\!16384$, $T_\text{sde}\!=\!17$) and the same single-resolution
+baseline.
 
 \begin{table}[t]
 \centering
-\caption{Multi-resolution coding with naive vs.\ unified target. Full UVG
-$\times 3$ GOPs at 720p with Wan~2.1-T2V-1.3B, $S\!=\!2$ schedule
-($480\!\to\!720$). $\Delta$ is relative to the single-resolution baseline
-(PSNR $28.72$, BPP $0.00483$).}
+\caption{Multi-resolution coding with naive vs.\ unified low-stage target.
+Full UVG ($7$~seq~$\times$~$3$~GOPs) at 720p, Wan~2.1-T2V-1.3B,
+$S\!=\!2$ schedule ($480\!\to\!720$). $\Delta$ is relative to the
+single-resolution baseline of $28.72$~dB at $0.00483$~BPP.}
 \label{tab:abl-mr}
 \small
 \begin{tabular}{@{}l c c c@{}}
 \toprule
 Target & PSNR (dB) & BPP & $\Delta$PSNR \\
 \midrule
-Single-resolution baseline    & 28.72 & 0.00483 & --- \\
+Single-resolution baseline   & 28.72 & 0.00483 & --- \\
 \midrule
-MR naive (Eq.~\ref{eq:naive-target}) & 27.28 & 0.00481 & $-1.44$ \\
-MR naive + DLC1 transition      & 28.07 & 0.00481 & $-0.65$ \\
-MR naive + joint oracle         & 28.89 & 0.00481 & $-1.26$ \\[2pt]
+MR naive + random fill       & 27.67 & 0.00453 & $-1.05$ \\
+MR naive + DLC1 transition   & 28.07 & 0.00481 & $-0.65$ \\
 \rowcolor{wacvblue!10}
-MR \textbf{unified} (ours)      & 28.50 & 0.00481 & $-0.22$ \\
-\rowcolor{wacvblue!10}
-MR unified + DLC1 transition    & 28.50 & 0.00511 & $-0.22$ \\
-MR unified + joint oracle       & 28.62 & 0.00453 & $-0.10$ \\
+MR \textbf{unified} + DLC1 (ours) & \textbf{28.50} & 0.00481 & \textbf{$-0.22$} \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Three observations follow from Table~\ref{tab:abl-mr}.
+\paragraph{Is the residual gap a codebook or a target problem?}
+The naive scheme with random high-band fill loses $1.05$~dB. The DLC1
+transition codebook recovers $\approx 0.4$~dB at $<1\%$ bitrate overhead,
+but a residual $0.65$~dB gap remains. To check whether this gap is a
+codebook-expressiveness problem or a codec-target problem, we ran a
+diagnostic joint-oracle study on a two-sequence subset
+(Bosphorus + HoneyBee, $3$ GOPs each), in which the encoder is allowed
+to inject the ground-truth high-band content at the transition step
+(non-deployable, zero bits transmitted for the oracle row).
+Table~\ref{tab:abl-oracle} reports the result. \emph{The numbers in
+Table~\ref{tab:abl-oracle} are not directly comparable to those of
+Table~\ref{tab:abl-mr}: the diagnostic subset's single-resolution
+baseline is $30.15$~dB rather than $28.72$~dB.}
 
-\paragraph{The ceiling is structural under the naive target.}
-The naive multi-resolution scheme suffers a $1.44$~dB PSNR loss versus the
-single-resolution baseline. Adding the DLC1 transition codebook recovers
-half of it ($-0.65$ vs.\ $-1.44$), and even the joint oracle---which
-transmits no bits but assumes a perfect high-band content at
-transition---only reaches $-1.26$. The $1.26$~dB gap to the
-single-resolution baseline is therefore not a codebook expressiveness
-problem; it is fundamental to the codec target.
+\begin{table}[t]
+\centering
+\caption{Joint-oracle diagnostic on a small subset
+(Bosphorus + HoneyBee, $3$ GOPs each), Wan~2.1-T2V-1.3B at 720p,
+$S\!=\!2$. The subset's single-resolution baseline is $30.15$~dB.
+Numbers are not directly comparable to Table~\ref{tab:abl-mr}.}
+\label{tab:abl-oracle}
+\small
+\begin{tabular}{@{}l c c@{}}
+\toprule
+Target & PSNR (dB) & $\Delta$ vs $30.15$ \\
+\midrule
+Single-resolution (subset baseline) & 30.15 & --- \\
+MR naive + random        & 28.46 & $-1.69$ \\
+MR naive + DLC1          & 28.72 & $-1.43$ \\
+MR naive + joint oracle  & 28.89 & $-1.26$ \\[2pt]
+\rowcolor{wacvblue!10}
+MR \textbf{unified} + DLC1 (ours) & 30.05 & $-0.10$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Under the naive target, even the joint oracle is capped at $-1.26$~dB on
+the diagnostic subset: the gap is intrinsic to the codec target the
+encoder is matching against, not to codebook expressiveness. Under the
+unified target, the same diagnostic gap collapses to $-0.10$~dB. Both
+observations are consistent with the full-UVG numbers in
+Table~\ref{tab:abl-mr}.
 
 \paragraph{Magnitude alignment is not the fix.}
 We tried two natural variants of the unified target that rescale
-$\mathcal{T}_L(\mathrm{VAE}(\mathbf{V}))$ to match the per-channel
-std (or norm) of the naive target before use, intending to ``soften'' the
-domain gap. Both \emph{hurt}: by $\approx 0.5$~dB on Bosphorus and
-HoneyBee relative to the raw unified target. Codebook-matching is
-spectrally sensitive, and rescaling re-introduces the domain mismatch in
-a more subtle form.
+$\mathcal{T}_L(\mathrm{VAE}(\mathbf{V}))$ to match the per-channel std
+(or norm) of the naive target before use, intending to ``soften'' the
+domain gap. Both \emph{hurt}: by $\approx 0.5$~dB on the diagnostic
+subset relative to the raw unified target. Codebook-matching is
+spectrally sensitive, and rescaling re-introduces the domain mismatch
+in a more subtle form.
 
 \paragraph{The fix is essentially one line of code.}
 Replacing Eq.~\ref{eq:naive-target} with Eq.~\ref{eq:lp-target} collapses
-the gap to $-0.22$~dB at the same bitrate. The joint-oracle ceiling under
-the unified target is $-0.10$~dB, so the DLC1 transition codebook
-captures roughly $95\%$ of the remaining recoverable information at
-$<1\%$ bitrate overhead.
+the full-UVG gap from $-0.65$ (naive + DLC1) to $-0.22$~dB at the same
+bitrate. The diagnostic-subset joint-oracle ceiling under the unified
+target is $-0.10$~dB, showing that once the target is corrected, transition
+high-band coding is no longer the dominant bottleneck.
 
 \subsection{Predictive skip: caching choice and schedule}
 \label{sec:abl-skip}
@@ -145,19 +172,28 @@ fixed alternating schedule but speed is bounded above by the same.
 not a new acceleration frontier}. The fixed alternating schedule is
 Pareto-optimal under the clean-endpoint caching scheme.
 
-\subsection{Stage count and transition placement}
+\subsection{Stage count and transition placement (diagnostic subset)}
 \label{sec:abl-stages}
 
 Table~\ref{tab:abl-stages} ablates the number of multi-resolution stages
-$S$ and the placement of transition steps on UVG-720p
-(Bosphorus + HoneyBee, $3$ GOPs each, Wan-T2V-1.3B). All entries use
-the unified target and DLC1 transition codebook.
+$S$ and the placement of transition steps. The schedule sweep is
+relatively expensive (six configurations~$\times$~multiple
+sequences), so we run it on a \emph{diagnostic subset}---Bosphorus and
+HoneyBee, $3$~GOPs each---rather than on full UVG. \textbf{The single-
+resolution baseline for this subset is $30.15$~dB, distinct from the
+$28.72$~dB full-UVG baseline used in Table~\ref{tab:abl-mr}}; the two
+tables answer different questions on different data and their numbers
+should not be combined. All entries below use the unified target
+(Eq.~\ref{eq:lp-target}) and the DLC1 transition codebook.
 
 \begin{table}[t]
 \centering
-\caption{Number of multi-resolution stages and transition placement.
+\caption{\textbf{Diagnostic-subset} stage-count and transition-placement
+sweep (Bosphorus + HoneyBee, $3$~GOPs each, Wan-T2V-1.3B at $720$p).
 $\tau$ lists the SDE step indices at which each transition occurs.
-$\Delta$PSNR relative to single-resolution baseline ($30.15$~dB).}
+$\Delta$PSNR is relative to this subset's single-resolution baseline of
+$30.15$~dB (not the full-UVG $28.72$~dB baseline of
+Table~\ref{tab:abl-mr}).}
 \label{tab:abl-stages}
 \small
 \begin{tabular}{@{}l c c c c@{}}
@@ -203,8 +239,12 @@ The Turbo-DDCM~\cite{vaisman2025turboddcm} codebook construction
 generates $K$ atoms per step per latent frame by independent
 \texttt{randn}\,$(D)$ calls. In our implementation, replacing these with
 a single batched \texttt{randn}\,$(K, D)$ per step reduces decoder
-wall-clock by $\approx 1.9\times$ at identical bitstream content
-(seed-consistent on both sides). This is an engineering fix---it does not
+wall-clock by $\approx 1.9\times$. The batched call produces a
+\emph{different} per-atom RNG sequence than the sequential call, so the
+two settings emit different codebook indices for the same input; what
+they preserve is the bit budget and the deterministic encoder/decoder
+reproducibility (both sides agree as long as both use the same
+batching). This is an engineering fix---it does not
 appear in the bitstream---but we report it for transparency: all timing
 numbers in this paper, including the published GVCC baseline rows in
 Table~\ref{tab:time}, include this fix unless explicitly marked

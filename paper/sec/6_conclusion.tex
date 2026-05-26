@@ -1,24 +1,24 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-We have presented GVCCTurbo, a zero-shot generative video codec that
-retains the codebook-driven backbone of GVCC but reduces per-GOP decode
-time by up to $1.9\times$ on Wan~2.1 backbones at preserved quality.
-The two mechanisms responsible for the speedup---unifying multi-resolution
-stages in a single latent domain, and caching the trajectory endpoint
-rather than the velocity for predictive skipping---are simple in
-implementation and grounded in trajectory geometry. Both required only
-small code-level changes; neither requires retraining or any change to
-the bitstream format beyond an optional sub-percent overhead for the
-DLC1 transition codebook.
+We have presented GVCCTurbo, a zero-shot generative video codec that retains
+the codebook-driven backbone of GVCC while reducing the cost of its expensive
+video-generator trajectory. The organizing principle is trajectory
+preservation: keep the SDE/codebook correction grid that carries the
+compressed residual, but avoid unnecessary generator work where the missing
+drift can be reconstructed reproducibly. Two mechanisms instantiate this
+principle---unifying multi-resolution stages in a single latent domain, and
+caching the trajectory endpoint rather than the velocity for predictive
+skipping. Both are simple in implementation, require no retraining, and leave
+the bitstream format unchanged beyond the optional DLC1 transition codebook.
 
-The acceleration mechanisms transfer cleanly to the FLF2V mode: at
-1080p with boundary-sharing dual-anchor conditioning, GVCCTurbo matches
-the published GVCC operating point in bitrate while improving PSNR by
-$+0.5$~dB and LPIPS by $-14\%$ at approximately $2\times$ the decode
-speed. They are partial in the T2V mode at the chosen lightweight
-backbone (Wan~2.1-1.3B), where the dominant residual is the backbone's
-limited capacity at 1080p rather than the codec's compute budget.
+The experiments support two broader lessons. First, multi-resolution coding is
+viable for generative compression only when all stages share the same latent
+target; otherwise the low-resolution stage optimizes a different object from
+the full-resolution decoder. Second, model-call skipping should cache the
+clean endpoint, not the velocity: the endpoint remains a stable destination,
+whereas the velocity is tied to a stale state. These lessons are codec-specific
+and do not follow from ordinary fast-sampling recipes.
 
 \paragraph{Limitations and future work.}
 The decoder is still substantially slower than learned codecs of the

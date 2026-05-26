@@ -27,10 +27,16 @@ quality cost ($<0.3$~dB PSNR in our main setting). Both fixes are obtained from 
 geometric reading of the generator's flow, with negligible engineering
 overhead.
 
-We evaluate GVCCTurbo on UVG at 720p and 1080p across three GOP-conditioning
-modes (T2V, I2V, FLF2V). At 1080p with first-last-frame conditioning, the
-turbo pipeline matches the published GVCC operating point in bitrate, improves
-reconstruction metrics by up to $+0.5$~dB PSNR and $-14\%$ LPIPS, and reduces
-per-GOP decode time by approximately $2\times$. Code, per-GOP measurements, and codebook
+We evaluate GVCCTurbo on UVG primarily in the T2V and FLF2V GOP-
+conditioning modes; the I2V mode is included for completeness through
+its published configuration. Our main full-UVG result is at $720$p in
+T2V mode: the turbo pipeline reduces per-GOP decoder wall-clock to
+$19$~s ($\approx 1.8\times$ over the same pipeline without our two
+mechanisms) with PSNR within $0.3$~dB of single-resolution coding at
+the same bitrate. As a preliminary $1080$p result, on the first half
+of each UVG sequence in first-last-frame conditioning, the turbo
+pipeline matches the published GVCC operating point in bitrate and
+exceeds it by $+0.5$~dB PSNR and $-14\%$ LPIPS at approximately
+$2\times$ the decode speed. Code, per-GOP measurements, and codebook
 bitstreams will be released to support reproducibility.
 \end{abstract}

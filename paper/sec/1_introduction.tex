@@ -34,10 +34,29 @@ orders of magnitude above the operating point of DCVC-RT and rules out the
 codec in any latency-sensitive scenario.
 
 In this paper we present \textbf{GVCCTurbo}, a turbo-charged variant of the
-same generative-codec design that preserves the zero-shot codebook scheme
-but accelerates per-GOP decoding by up to $1.9\times$ on Wan~2.1-14B
-without measurable RD degradation. Our two contributions are simple,
-trajectory-geometric, and \emph{require no retraining}.
+same generative-codec design. The central design constraint is
+\emph{trajectory preservation}: the decoder should still traverse the same
+fine-grained SDE/codebook correction process, because those per-step
+innovations are the transmitted residual channel of the codec. We therefore do
+not simply reduce the number of solver steps. Instead, we reduce the cost of
+some steps while keeping the codebook trajectory reproducible. Our two
+contributions are simple, trajectory-geometric, and \emph{require no
+retraining}.
+
+\paragraph{Predictive skip via clean-endpoint caching.}
+The dominant per-step cost is the video generator's velocity evaluation.
+We replace roughly half of these evaluations along the SDE trajectory with a
+cached reconstruction. The naive way to cache---storing the previous step's
+velocity and reusing it---silently drifts, because the velocity is a function
+of both state and time. Instead, we cache the generator's
+\emph{clean-latent estimate} (the trajectory endpoint) and reconstruct the
+skipped step's velocity from the current state and current time. Under the
+linear flow interpolant, the clean endpoint is invariant along the trajectory,
+so this scheme is geometrically faithful within a local linearization. We show
+empirically that the cache has an effective radius of one step: a fixed
+alternating skip/run schedule, combined with a one-step warmup after each
+resolution transition, is Pareto-optimal under this caching scheme; more
+aggressive multi-step skipping is unstable.
 
 \paragraph{Multi-resolution coding with a unified target.}
 A natural way to cut decoder cost is to run the early high-noise iterations
@@ -55,30 +74,32 @@ high-res latent as the low-stage codebook target---collapses the ceiling to
 $0.2$~dB at the same bitrate, recovering nearly all of the gap with a one-
 line change in the codec target.
 
-\paragraph{Predictive skip via clean-endpoint caching.}
-The dominant per-step cost is the video generator's velocity evaluation.
-We replace half of these evaluations along the SDE trajectory with a cached
-reconstruction. The naive way to cache---storing the previous step's
-velocity and reusing it---silently drifts, because the velocity is a
-function of both state and time. Instead, we cache the generator's
-\emph{clean-image estimate} (the trajectory endpoint) and reconstruct the
-skipped step's velocity from the current state and current time. Under the
-linear flow interpolant, the clean endpoint is invariant along the
-trajectory, so this scheme is geometrically faithful within a local
-linearization. We show empirically that the cache has an effective radius
-of one step: a fixed alternating skip/run schedule, combined with a one-step
-warmup after each resolution transition, is Pareto-optimal under this
-caching scheme; more aggressive multi-step skipping is unstable.
+\paragraph{Negative results as design constraints.}
+Several plausible accelerations fail for principled reasons. Band-limiting
+the codebook innovation breaks the full-spectrum noise distribution expected
+by the SDE; caching velocity remembers the previous direction rather than the
+current destination; multi-step cache reuse compounds its own extrapolation
+error; and a naive low-resolution VAE target moves the codec into the wrong
+latent domain. These failures shape the final design: GVCCTurbo reduces
+generator cost only when the missing computation can be replaced without
+changing the stochastic correction channel that carries the compressed bits.
 
 \paragraph{GOP-level evaluation across conditioning modes.}
-GVCC is evaluated in three GOP-conditioning modes: text-only (T2V), with a
-single anchor frame (I2V) with autoregressive chaining, and with both
+GVCC is evaluated in three GOP-conditioning modes: text-only (T2V), with
+a single anchor frame (I2V) with autoregressive chaining, and with both
 endpoint frames (FLF2V) with boundary sharing across consecutive GOPs.
-We retain this three-way structure and apply our acceleration mechanisms
-across all three modes on UVG at 720p and 1080p. At 1080p with first-last-
-frame conditioning, the turbo pipeline matches the bitrate of the published
-GVCC operating point and exceeds it by $+0.5$~dB PSNR and $-14\%$ LPIPS,
-while reducing per-GOP decode time by approximately $2\times$.
+We apply our acceleration mechanisms primarily to T2V and FLF2V; the
+I2V mode is included by reusing the published GVCC-I2V configuration
+without re-evaluation. Our main full-UVG measurement is at $720$p in
+T2V mode: the full acceleration stack reduces per-GOP decoder
+wall-clock to $19$~s with PSNR within $0.3$~dB of the single-resolution
+baseline at the same bitrate. At $1080$p we report \emph{preliminary
+half-UVG} results (first $9$ GOPs per sequence): in FLF2V mode the
+turbo pipeline matches the bitrate of the published GVCC-FLF2V and
+exceeds it by $+0.5$~dB PSNR and $-14\%$ LPIPS at approximately
+$2\times$ the decode speed, and in T2V mode (Wan-T2V-1.3B) it reaches
+$0.0030$~BPP at $108$~s per GOP. Full-UVG $1080$p measurements are the
+next step.
 
 The remainder of the paper is organized as follows. Section~\ref{sec:related}
 positions our work against traditional, learned, and generative video

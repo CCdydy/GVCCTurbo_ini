@@ -63,8 +63,9 @@ to us are inference-time caching schemes that reuse intermediate
 quantities across denoising steps: DeepCache~\cite{ma2024deepcache} caches
 internal U-Net features, and several recent
 works~\cite{kim2025inferencetime} cache velocity outputs directly. We
-adopt the latter family but cache the clean-image \emph{endpoint} rather
-than the velocity (Section~\ref{sec:method-skip}); this choice is forced by
+adopt the latter family but cache the clean-latent \emph{endpoint}
+rather than the velocity (Section~\ref{sec:method-skip}); this choice is
+forced by
 the codec requirement that the cache stay valid across an SDE step where
 the trajectory state changes by an encoder-selected codebook innovation.
 

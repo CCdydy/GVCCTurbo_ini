@@ -54,6 +54,37 @@ $1080$p is approximately $700$~s on an RTX~PRO 6000. The two
 acceleration mechanisms below target the dominant cost---the per-step
 generator evaluation---without changing the codec backbone.
 
+\subsection{Trajectory-preserving acceleration principle}
+\label{sec:method-principle}
+
+The key distinction from ordinary fast sampling is that GVCC is a
+\emph{codec}: the bitstream specifies the stochastic innovations
+$\{\mathbf{z}^*_k\}$, and the decoder must reproduce the same trajectory as
+the encoder. Directly reducing $T_\text{sde}$ therefore removes both solver
+steps and opportunities to inject codebook residuals. GVCCTurbo instead keeps
+the correction grid
+\begin{equation}
+\mathcal{K}_\text{sde}=\{1,\ldots,T_\text{sde}\}
+\end{equation}
+fixed, and reduces the cost of evaluating the drift on a subset
+$\mathcal{Q}\subseteq\mathcal{K}_\text{sde}$:
+\begin{equation}
+\tilde{\mathbf{u}}_k =
+\begin{cases}
+\mathbf{u}_\theta(\mathbf{x}_{t_k},t_k), & k\in\mathcal{Q},\\
+\mathrm{Predict}(\mathbf{x}_{t_k},t_k,\mathcal{C}), & k\notin\mathcal{Q},
+\end{cases}
+\label{eq:predictive-u}
+\end{equation}
+where $\mathcal{C}$ is a decoder-reproducible cache. Equation~\ref{eq:sde-step}
+is then applied at \emph{every} SDE step with the transmitted
+$\mathbf{z}^*_k$ unchanged. Multi-resolution coding follows the same
+principle spatially: early steps may run on a smaller latent grid, but the
+stage target must remain a projection of the final high-resolution latent so
+that the lifted trajectory is still a trajectory toward the same
+$\mathbf{x}_0$. The rest of this section instantiates these two ways of
+reducing generator cost while preserving the codebook correction channel.
+
 \subsection{Multi-resolution coding with a unified target}
 \label{sec:method-mr}
 
@@ -107,6 +138,18 @@ Eq.~\ref{eq:naive-target} drives the trajectory toward an object the
 decoder cannot produce; the high-band fill at transition cannot recover
 the mismatch.
 
+Equivalently, the low stage is optimized against
+$\mathbf{x}_0^{(s),\,\text{naive}}$, but after spectral lift the full-stage
+loss is sensitive to
+\begin{equation}
+\mathcal{T}_L(\bar{\mathbf{x}}_{t_k}^{(s+1)})-\mathcal{T}_L(\mathbf{x}_0),
+\label{eq:lifted-low-error}
+\end{equation}
+not to
+$\mathbf{x}^{(s)}_{t_k}-\mathbf{x}_0^{(s),\,\text{naive}}$. Thus a perfect
+codebook match in the native low-resolution VAE domain can still become a
+biased initialization in the high-resolution codec domain.
+
 \paragraph{Fix: unify both stages in the high-resolution latent domain.}
 We replace Eq.~\ref{eq:naive-target} with
 \begin{equation}
@@ -135,6 +178,16 @@ We transmit one additional codebook atom per latent frame at this step,
 selected by inner product with $\mathbf{r}_{H_{s+1}}$. This costs
 $<1\%$ of the per-GOP bit budget but recovers up to $0.4$~dB PSNR over
 random high-band fill (Section~\ref{sec:ablations}).
+The transition high band therefore has the additive form
+\begin{equation}
+\mathbf{x}^{H}_{t_k}
+= t_k\boldsymbol{\epsilon}_H + \widehat{\mathbf{r}}_{H},
+\qquad
+\widehat{\mathbf{r}}_{H}\approx (1-t_k)\mathcal{T}_{H}(\mathbf{x}_0),
+\label{eq:dlc1-transition}
+\end{equation}
+which preserves the Gaussian noise floor while using transmitted bits only
+for the target-aware clean contribution.
 
 \subsection{Predictive skip via clean-endpoint caching}
 \label{sec:method-skip}
