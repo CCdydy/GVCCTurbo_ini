@@ -1,0 +1,77 @@
+{
+  "sequence": "HoneyBee",
+  "gop": 3,
+  "method": "mr_dlc1_codebook",
+  "PSNR_dB": 28.62,
+  "MS_SSIM": 0.9027,
+  "LPIPS": 0.1191,
+  "BPP": 0.002999,
+  "total_bits": 205200,
+  "bitrate_kbps": 99.49,
+  "encode_s": 52.9,
+  "decode_s": 56.1,
+  "per_frame_psnr": [
+    28.73,
+    28.74,
+    28.7,
+    28.69,
+    28.72,
+    28.69,
+    28.65,
+    28.58,
+    28.56,
+    28.61,
+    28.63,
+    28.62,
+    28.62,
+    28.63,
+    28.63,
+    28.6,
+    28.62,
+    28.62,
+    28.64,
+    28.64,
+    28.67,
+    28.65,
+    28.63,
+    28.59,
+    28.59,
+    28.57,
+    28.57,
+    28.57,
+    28.59,
+    28.56,
+    28.54,
+    28.49,
+    28.51
+  ],
+  "high_freq_mode": "dlc1_codebook",
+  "transition_align": "variance",
+  "dlc2_rank_frac": null,
+  "low_target_from_full": true,
+  "low_target_align": "none",
+  "resolutions": [
+    [
+      480,
+      832
+    ],
+    [
+      720,
+      1280
+    ],
+    [
+      1080,
+      1920
+    ]
+  ],
+  "transition_steps": [
+    6,
+    12
+  ],
+  "K_per_stage": [
+    16384,
+    16384,
+    16384
+  ],
+  "S": 3
+}

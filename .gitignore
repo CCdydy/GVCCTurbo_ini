@@ -7,9 +7,10 @@ checkpoints/
 data/
 UVG/
 
-# Experiment outputs
+# Experiment outputs — KEEP metrics JSON / summary.json / .tdcm bitstreams,
+# EXCLUDE bulky media (.mp4, .png, .log handled by their own rules below).
+# We do NOT blanket-ignore results dirs anymore so JSON metadata can be tracked.
 outputs/
-results*/
 sweep_*/
 codec_benchmark*/
 diagnose_output/
@@ -61,17 +62,15 @@ wandb/
 # Local index stub (real Claude memory lives elsewhere)
 MEMORY.md
 
-# Raw experiment outputs (videos, codebooks) — only keep .md reports + .py scripts
-exp_*/results*/
-exp_*/out_*/
+# Local sandbox scripts
 exp_*/test_*.py
 exp_*/smoke_*.py
 
 # Local /tmp parsing artifacts
 *_parsed.json
 
-# Media outputs
-*.tdcm
+# Media outputs (videos / images) — too large for GitHub. Keep .tdcm bitstreams
+# (codebook indices) since they ARE the compressed payload (small).
 *.mp4
 *.png
 

@@ -1,0 +1,32 @@
+{
+  "seq": "Jockey",
+  "PSNR": 24.843456268310547,
+  "MS_SSIM": 0.8126886487007141,
+  "LPIPS": 0.2285393625497818,
+  "last_PSNR": 21.88287353515625,
+  "BPP": 0.0020833333333333333,
+  "kbps": 30.72,
+  "codebook_bytes": 4080,
+  "tail_bytes": 0,
+  "enc_s": 1.850581169128418,
+  "dec_s": 1.2113873958587646,
+  "args": {
+    "seq": "Jockey",
+    "start_frame": 0,
+    "K": 16384,
+    "M": 64,
+    "steps": 20,
+    "ddim_tail": 3,
+    "g_scale": 3.0,
+    "cfg": 4.5,
+    "flow_score": 2.0,
+    "seed": 42,
+    "no_tail_residual": true,
+    "tail_residual_bits": 8,
+    "tail_residual_frames": 1,
+    "model_call_skip": "x0_cache",
+    "model_call_period": 2,
+    "model_call_skip_until": -1,
+    "out": "/home/rog/Desktop/gvcc_turbo/turbogvcc/exp_mobilei2v/out_jockey_x0cache"
+  }
+}

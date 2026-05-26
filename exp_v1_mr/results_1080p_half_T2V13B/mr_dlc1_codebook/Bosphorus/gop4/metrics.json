@@ -1,0 +1,77 @@
+{
+  "sequence": "Bosphorus",
+  "gop": 4,
+  "method": "mr_dlc1_codebook",
+  "PSNR_dB": 29.11,
+  "MS_SSIM": 0.8723,
+  "LPIPS": 0.1471,
+  "BPP": 0.002999,
+  "total_bits": 205200,
+  "bitrate_kbps": 99.49,
+  "encode_s": 52.5,
+  "decode_s": 55.8,
+  "per_frame_psnr": [
+    28.74,
+    29.01,
+    28.98,
+    29.11,
+    29.2,
+    29.3,
+    29.25,
+    29.28,
+    29.31,
+    29.33,
+    29.23,
+    29.24,
+    29.25,
+    29.25,
+    29.15,
+    29.13,
+    29.11,
+    29.2,
+    29.14,
+    29.17,
+    29.2,
+    29.22,
+    29.14,
+    29.13,
+    29.12,
+    29.17,
+    29.08,
+    29.05,
+    29.04,
+    29.0,
+    28.83,
+    28.7,
+    28.64
+  ],
+  "high_freq_mode": "dlc1_codebook",
+  "transition_align": "variance",
+  "dlc2_rank_frac": null,
+  "low_target_from_full": true,
+  "low_target_align": "none",
+  "resolutions": [
+    [
+      480,
+      832
+    ],
+    [
+      720,
+      1280
+    ],
+    [
+      1080,
+      1920
+    ]
+  ],
+  "transition_steps": [
+    6,
+    12
+  ],
+  "K_per_stage": [
+    16384,
+    16384,
+    16384
+  ],
+  "S": 3
+}

@@ -1,0 +1,86 @@
+{
+  "config": {
+    "wan_ckpt": "/home/rog/Desktop/gvcc_turbo/checkpoints/Wan2.1-T2V-1.3B-Diffusers",
+    "data_dir": "/home/rog/Desktop/gvcc_turbo/turbogvcc/data/uvg",
+    "output_dir": "results/spd_S3_d01",
+    "prompt": "A beautiful butterfly flying over a meadow at sunset, cinematic.",
+    "num_frames": 33,
+    "height": 720,
+    "width": 1280,
+    "num_steps": 50,
+    "flow_shift": 3.0,
+    "seed": 42,
+    "scales": [
+      0.5,
+      0.75,
+      1.0
+    ],
+    "delta": 0.01,
+    "measure_beta": false,
+    "beta": 1.9879,
+    "beta_intercept": -4.0741,
+    "skip_baseline": false,
+    "skip_spd": false
+  },
+  "beta_used": 1.9879,
+  "intercept_used": -4.0741,
+  "baseline": {
+    "wall": 63.909505128860474,
+    "num_steps": 50
+  },
+  "spd": {
+    "stages": [
+      {
+        "stage": 0,
+        "scale": 0.5,
+        "steps": 27,
+        "wall": 4.834813117980957,
+        "lat_hw": [
+          46,
+          80
+        ]
+      },
+      {
+        "stage": 1,
+        "scale": 0.75,
+        "steps": 5,
+        "wall": 2.747054100036621,
+        "lat_hw": [
+          68,
+          120
+        ]
+      },
+      {
+        "stage": 2,
+        "scale": 1.0,
+        "steps": 18,
+        "wall": 23.362730026245117,
+        "lat_hw": [
+          90,
+          160
+        ]
+      }
+    ],
+    "total_start": 1779347869.8288443,
+    "schedule": [
+      [
+        0.5,
+        27
+      ],
+      [
+        0.75,
+        5
+      ],
+      [
+        1.0,
+        18
+      ]
+    ],
+    "transition_times": [
+      0.7275890292586369,
+      0.6367861201901296
+    ],
+    "total_wall": 31.076769590377808
+  },
+  "speedup": 2.056504133835344
+}

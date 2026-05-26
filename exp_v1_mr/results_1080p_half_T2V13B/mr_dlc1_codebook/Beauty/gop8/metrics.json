@@ -1,0 +1,77 @@
+{
+  "sequence": "Beauty",
+  "gop": 8,
+  "method": "mr_dlc1_codebook",
+  "PSNR_dB": 29.72,
+  "MS_SSIM": 0.8602,
+  "LPIPS": 0.3148,
+  "BPP": 0.002999,
+  "total_bits": 205200,
+  "bitrate_kbps": 99.49,
+  "encode_s": 52.5,
+  "decode_s": 56.2,
+  "per_frame_psnr": [
+    29.62,
+    29.73,
+    29.82,
+    29.73,
+    29.96,
+    29.61,
+    29.63,
+    29.57,
+    29.53,
+    29.41,
+    29.52,
+    29.46,
+    29.43,
+    29.5,
+    29.59,
+    29.66,
+    29.59,
+    29.62,
+    29.81,
+    29.78,
+    29.91,
+    29.94,
+    30.07,
+    29.9,
+    29.82,
+    29.84,
+    30.04,
+    29.94,
+    29.89,
+    29.84,
+    29.92,
+    29.72,
+    29.52
+  ],
+  "high_freq_mode": "dlc1_codebook",
+  "transition_align": "variance",
+  "dlc2_rank_frac": null,
+  "low_target_from_full": true,
+  "low_target_align": "none",
+  "resolutions": [
+    [
+      480,
+      832
+    ],
+    [
+      720,
+      1280
+    ],
+    [
+      1080,
+      1920
+    ]
+  ],
+  "transition_steps": [
+    6,
+    12
+  ],
+  "K_per_stage": [
+    16384,
+    16384,
+    16384
+  ],
+  "S": 3
+}

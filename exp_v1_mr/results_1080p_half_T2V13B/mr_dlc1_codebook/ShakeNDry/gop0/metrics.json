@@ -1,0 +1,77 @@
+{
+  "sequence": "ShakeNDry",
+  "gop": 0,
+  "method": "mr_dlc1_codebook",
+  "PSNR_dB": 24.79,
+  "MS_SSIM": 0.6515,
+  "LPIPS": 0.4247,
+  "BPP": 0.002999,
+  "total_bits": 205200,
+  "bitrate_kbps": 99.49,
+  "encode_s": 52.3,
+  "decode_s": 55.7,
+  "per_frame_psnr": [
+    24.68,
+    24.65,
+    24.92,
+    24.78,
+    24.85,
+    24.77,
+    24.96,
+    24.72,
+    24.83,
+    24.8,
+    25.01,
+    24.78,
+    24.8,
+    24.76,
+    24.97,
+    24.82,
+    24.87,
+    24.77,
+    24.99,
+    24.76,
+    24.73,
+    24.72,
+    24.9,
+    24.7,
+    24.74,
+    24.72,
+    24.87,
+    24.7,
+    24.78,
+    24.64,
+    24.82,
+    24.6,
+    24.54
+  ],
+  "high_freq_mode": "dlc1_codebook",
+  "transition_align": "variance",
+  "dlc2_rank_frac": null,
+  "low_target_from_full": true,
+  "low_target_align": "none",
+  "resolutions": [
+    [
+      480,
+      832
+    ],
+    [
+      720,
+      1280
+    ],
+    [
+      1080,
+      1920
+    ]
+  ],
+  "transition_steps": [
+    6,
+    12
+  ],
+  "K_per_stage": [
+    16384,
+    16384,
+    16384
+  ],
+  "S": 3
+}

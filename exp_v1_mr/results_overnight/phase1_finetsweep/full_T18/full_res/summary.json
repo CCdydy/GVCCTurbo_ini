@@ -1,0 +1,93 @@
+{
+  "experiment": "V1 MR-GVCC",
+  "timestamp": "2026-05-24T00:22:46.039292",
+  "config": {
+    "method": "full_res",
+    "wan_ckpt": "checkpoints/Wan2.1-T2V-1.3B-Diffusers",
+    "high_freq_mode": "n/a",
+    "transition_align": "n/a",
+    "dlc2_rank_frac": null,
+    "low_target_from_full": false,
+    "low_target_align": "n/a",
+    "full_resolution": "1280\u00d7720",
+    "low_resolution": "n/a",
+    "transition_step": "n/a",
+    "frames_per_gop": 33,
+    "M": 64,
+    "K": 16384,
+    "steps": 18,
+    "ddim_tail": 3,
+    "g_scale": 3.0,
+    "S": 1,
+    "resolutions": null,
+    "transition_steps": null,
+    "K_per_stage": null
+  },
+  "sequences": [
+    {
+      "sequence": "HoneyBee",
+      "gop_results": [
+        {
+          "sequence": "HoneyBee",
+          "gop": 0,
+          "method": "full_res",
+          "PSNR_dB": 29.56,
+          "MS_SSIM": 0.9365,
+          "LPIPS": 0.0633,
+          "BPP": 0.004261,
+          "total_bits": 129600,
+          "bitrate_kbps": 62.84,
+          "encode_s": 68.1,
+          "decode_s": 40.6,
+          "per_frame_psnr": [
+            29.52,
+            29.53,
+            29.55,
+            29.58,
+            29.59,
+            29.61,
+            29.61,
+            29.6,
+            29.58,
+            29.6,
+            29.63,
+            29.64,
+            29.64,
+            29.62,
+            29.61,
+            29.57,
+            29.56,
+            29.55,
+            29.55,
+            29.56,
+            29.56,
+            29.57,
+            29.57,
+            29.55,
+            29.55,
+            29.53,
+            29.55,
+            29.54,
+            29.53,
+            29.53,
+            29.53,
+            29.47,
+            29.4
+          ]
+        }
+      ],
+      "avg_PSNR": 29.56,
+      "avg_LPIPS": 0.0633,
+      "avg_BPP": 0.004261,
+      "avg_encode_s": 68.1,
+      "avg_decode_s": 40.6
+    }
+  ],
+  "overall": {
+    "PSNR_dB": 29.56,
+    "LPIPS": 0.0633,
+    "BPP": 0.004261,
+    "avg_encode_s": 68.1,
+    "avg_decode_s": 40.6
+  }
+}

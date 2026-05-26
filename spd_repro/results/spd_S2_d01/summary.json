@@ -1,0 +1,65 @@
+{
+  "config": {
+    "wan_ckpt": "/home/rog/Desktop/gvcc_turbo/checkpoints/Wan2.1-T2V-1.3B-Diffusers",
+    "data_dir": "/home/rog/Desktop/gvcc_turbo/turbogvcc/data/uvg",
+    "output_dir": "results/spd_S2_d01",
+    "prompt": "A beautiful butterfly flying over a meadow at sunset, cinematic.",
+    "num_frames": 33,
+    "height": 720,
+    "width": 1280,
+    "num_steps": 50,
+    "flow_shift": 3.0,
+    "seed": 42,
+    "scales": [
+      0.5,
+      1.0
+    ],
+    "delta": 0.01,
+    "measure_beta": false,
+    "beta": 1.9879,
+    "beta_intercept": -4.0741,
+    "skip_baseline": true,
+    "skip_spd": false
+  },
+  "beta_used": 1.9879,
+  "intercept_used": -4.0741,
+  "spd": {
+    "stages": [
+      {
+        "stage": 0,
+        "scale": 0.5,
+        "steps": 27,
+        "wall": 4.823289394378662,
+        "lat_hw": [
+          46,
+          80
+        ]
+      },
+      {
+        "stage": 1,
+        "scale": 1.0,
+        "steps": 23,
+        "wall": 29.42294931411743,
+        "lat_hw": [
+          90,
+          160
+        ]
+      }
+    ],
+    "total_start": 1779347642.3736734,
+    "schedule": [
+      [
+        0.5,
+        27
+      ],
+      [
+        1.0,
+        23
+      ]
+    ],
+    "transition_times": [
+      0.7275890292586369
+    ],
+    "total_wall": 34.25335955619812
+  }
+}

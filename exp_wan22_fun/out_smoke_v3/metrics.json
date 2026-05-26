@@ -1,0 +1,23 @@
+{
+  "PSNR": 19.25185775756836,
+  "MS_SSIM": 0.7617406249046326,
+  "LPIPS": 0.2755238115787506,
+  "BPP": 0.003841683884297521,
+  "kbps": 55.38909090909091,
+  "enc_s": 23.728363037109375,
+  "dec_s": 26.63576889038086,
+  "args": {
+    "seq": "Jockey",
+    "start_frame": 0,
+    "K": 16384,
+    "M": 64,
+    "steps": 20,
+    "ddim_tail": 3,
+    "g_scale": 3.0,
+    "cfg": 6.0,
+    "seed": 42,
+    "model_call_skip": "none",
+    "model_call_period": 2,
+    "out": "/home/rog/Desktop/gvcc_turbo/turbogvcc/exp_wan22_fun/out_smoke_v3"
+  }
+}

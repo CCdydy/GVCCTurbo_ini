@@ -1,0 +1,73 @@
+{
+  "seq": "Jockey",
+  "num_gops": 3,
+  "avg_PSNR": 21.918392181396484,
+  "avg_kbps": 63.301818181818184,
+  "total_wall_s": 106.33493614196777,
+  "video_s": 6.1875,
+  "per_gop": [
+    {
+      "gop": 0,
+      "first_src": "GT[0]",
+      "PSNR": 22.294979095458984,
+      "first_PSNR": 31.602401733398438,
+      "last_PSNR": 28.590002059936523,
+      "MS_SSIM": 0.905131459236145,
+      "LPIPS": 0.1111859604716301,
+      "cb_bytes": 16320,
+      "tail_bytes": 0,
+      "kbps": 63.301818181818184,
+      "BPP": 0.004390495867768595,
+      "enc_s": 16.428804874420166,
+      "dec_s": 19.041016817092896
+    },
+    {
+      "gop": 1,
+      "first_src": "GT[0]",
+      "PSNR": 21.734485626220703,
+      "first_PSNR": 32.35093688964844,
+      "last_PSNR": 28.584842681884766,
+      "MS_SSIM": 0.8998849987983704,
+      "LPIPS": 0.1255599409341812,
+      "cb_bytes": 16320,
+      "tail_bytes": 0,
+      "kbps": 63.301818181818184,
+      "BPP": 0.004390495867768595,
+      "enc_s": 16.18719220161438,
+      "dec_s": 19.163044929504395
+    },
+    {
+      "gop": 2,
+      "first_src": "GT[0]",
+      "PSNR": 21.725711822509766,
+      "first_PSNR": 32.07700729370117,
+      "last_PSNR": 28.494766235351562,
+      "MS_SSIM": 0.8963381052017212,
+      "LPIPS": 0.13607452809810638,
+      "cb_bytes": 16320,
+      "tail_bytes": 0,
+      "kbps": 63.301818181818184,
+      "BPP": 0.004390495867768595,
+      "enc_s": 16.267497301101685,
+      "dec_s": 19.247380018234253
+    }
+  ],
+  "args": {
+    "seq": "Jockey",
+    "num_gops": 3,
+    "start_frame": 0,
+    "K": 16384,
+    "M": 64,
+    "steps": 20,
+    "ddim_tail": 3,
+    "cfg": 6.0,
+    "g_scale": 3.0,
+    "seed": 42,
+    "model_call_skip": "x0_cache",
+    "model_call_period": 2,
+    "tail_residual_bits": 0,
+    "tail_residual_frames": 0,
+    "chained_first_frame": false,
+    "out": "/home/rog/Desktop/gvcc_turbo/turbogvcc/exp_wan22_fun/out_3gop_x0cache"
+  }
+}

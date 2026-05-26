@@ -1,0 +1,77 @@
+{
+  "sequence": "ReadySteadyGo",
+  "gop": 6,
+  "method": "mr_dlc1_codebook",
+  "PSNR_dB": 25.31,
+  "MS_SSIM": 0.8568,
+  "LPIPS": 0.1725,
+  "BPP": 0.002999,
+  "total_bits": 205200,
+  "bitrate_kbps": 99.49,
+  "encode_s": 52.6,
+  "decode_s": 56.0,
+  "per_frame_psnr": [
+    25.17,
+    25.08,
+    25.24,
+    25.33,
+    25.26,
+    25.14,
+    25.32,
+    25.56,
+    25.4,
+    25.36,
+    25.39,
+    25.57,
+    25.44,
+    25.24,
+    25.44,
+    25.52,
+    25.29,
+    25.24,
+    25.46,
+    25.5,
+    25.28,
+    25.2,
+    25.34,
+    25.54,
+    25.45,
+    25.32,
+    25.41,
+    25.44,
+    25.36,
+    25.14,
+    25.18,
+    25.0,
+    24.65
+  ],
+  "high_freq_mode": "dlc1_codebook",
+  "transition_align": "variance",
+  "dlc2_rank_frac": null,
+  "low_target_from_full": true,
+  "low_target_align": "none",
+  "resolutions": [
+    [
+      480,
+      832
+    ],
+    [
+      720,
+      1280
+    ],
+    [
+      1080,
+      1920
+    ]
+  ],
+  "transition_steps": [
+    6,
+    12
+  ],
+  "K_per_stage": [
+    16384,
+    16384,
+    16384
+  ],
+  "S": 3
+}

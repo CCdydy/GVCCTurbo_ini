@@ -1,0 +1,523 @@
+{
+  "experiment": "V1 MR-GVCC",
+  "timestamp": "2026-05-23T18:51:48.712051",
+  "config": {
+    "method": "mr_dlc2_subband",
+    "wan_ckpt": "exp_t2v/Wan2.1-T2V-1.3B-Diffusers",
+    "high_freq_mode": "dlc2_subband",
+    "transition_align": "variance",
+    "dlc2_rank_frac": 0.5,
+    "full_resolution": "1280\u00d7720",
+    "low_resolution": "832\u00d7480",
+    "transition_step": 8,
+    "frames_per_gop": 33,
+    "M": 64,
+    "K": "K_low=4096,K_full=16384",
+    "steps": 20,
+    "ddim_tail": 3,
+    "g_scale": 3.0,
+    "S": 3,
+    "resolutions": [
+      [
+        480,
+        832
+      ],
+      [
+        576,
+        1024
+      ],
+      [
+        720,
+        1280
+      ]
+    ],
+    "transition_steps": [
+      6,
+      11
+    ],
+    "K_per_stage": [
+      4096,
+      8192,
+      16384
+    ]
+  },
+  "sequences": [
+    {
+      "sequence": "Bosphorus",
+      "gop_results": [
+        {
+          "sequence": "Bosphorus",
+          "gop": 0,
+          "method": "mr_dlc2_subband",
+          "PSNR_dB": 27.83,
+          "MS_SSIM": 0.8682,
+          "LPIPS": 0.1345,
+          "BPP": 0.005057,
+          "total_bits": 153792,
+          "bitrate_kbps": 74.57,
+          "encode_s": 57.0,
+          "decode_s": 33.1,
+          "per_frame_psnr": [
+            27.74,
+            27.72,
+            27.78,
+            27.69,
+            27.63,
+            27.76,
+            27.73,
+            27.63,
+            27.57,
+            27.83,
+            27.89,
+            27.85,
+            27.83,
+            28.0,
+            28.02,
+            27.94,
+            27.94,
+            28.04,
+            28.05,
+            27.96,
+            27.9,
+            28.12,
+            28.1,
+            27.99,
+            27.94,
+            28.02,
+            27.95,
+            27.83,
+            27.71,
+            27.81,
+            27.69,
+            27.49,
+            27.37
+          ],
+          "high_freq_mode": "dlc2_subband",
+          "transition_align": "variance",
+          "dlc2_rank_frac": 0.5,
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              576,
+              1024
+            ],
+            [
+              720,
+              1280
+            ]
+          ],
+          "transition_steps": [
+            6,
+            11
+          ],
+          "K_per_stage": [
+            4096,
+            8192,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Bosphorus",
+          "gop": 1,
+          "method": "mr_dlc2_subband",
+          "PSNR_dB": 27.96,
+          "MS_SSIM": 0.8735,
+          "LPIPS": 0.1322,
+          "BPP": 0.005057,
+          "total_bits": 153792,
+          "bitrate_kbps": 74.57,
+          "encode_s": 55.4,
+          "decode_s": 32.3,
+          "per_frame_psnr": [
+            28.06,
+            28.01,
+            28.04,
+            27.94,
+            27.87,
+            28.04,
+            28.01,
+            27.91,
+            27.86,
+            28.04,
+            28.05,
+            27.97,
+            27.94,
+            28.11,
+            28.11,
+            28.04,
+            28.0,
+            28.12,
+            28.12,
+            28.05,
+            27.96,
+            28.1,
+            28.08,
+            27.95,
+            27.91,
+            28.02,
+            27.99,
+            27.89,
+            27.78,
+            27.86,
+            27.76,
+            27.6,
+            27.5
+          ],
+          "high_freq_mode": "dlc2_subband",
+          "transition_align": "variance",
+          "dlc2_rank_frac": 0.5,
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              576,
+              1024
+            ],
+            [
+              720,
+              1280
+            ]
+          ],
+          "transition_steps": [
+            6,
+            11
+          ],
+          "K_per_stage": [
+            4096,
+            8192,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Bosphorus",
+          "gop": 2,
+          "method": "mr_dlc2_subband",
+          "PSNR_dB": 27.9,
+          "MS_SSIM": 0.8702,
+          "LPIPS": 0.1299,
+          "BPP": 0.005057,
+          "total_bits": 153792,
+          "bitrate_kbps": 74.57,
+          "encode_s": 55.2,
+          "decode_s": 32.5,
+          "per_frame_psnr": [
+            27.94,
+            27.91,
+            27.97,
+            27.88,
+            27.81,
+            27.95,
+            27.9,
+            27.77,
+            27.71,
+            27.94,
+            27.97,
+            27.89,
+            27.85,
+            28.06,
+            28.07,
+            28.0,
+            28.0,
+            28.13,
+            28.09,
+            27.98,
+            27.9,
+            28.09,
+            28.07,
+            27.94,
+            27.88,
+            27.99,
+            27.96,
+            27.83,
+            27.69,
+            27.83,
+            27.73,
+            27.54,
+            27.42
+          ],
+          "high_freq_mode": "dlc2_subband",
+          "transition_align": "variance",
+          "dlc2_rank_frac": 0.5,
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              576,
+              1024
+            ],
+            [
+              720,
+              1280
+            ]
+          ],
+          "transition_steps": [
+            6,
+            11
+          ],
+          "K_per_stage": [
+            4096,
+            8192,
+            16384
+          ],
+          "S": 3
+        }
+      ],
+      "avg_PSNR": 27.9,
+      "avg_LPIPS": 0.1322,
+      "avg_BPP": 0.005057,
+      "avg_encode_s": 55.9,
+      "avg_decode_s": 32.6
+    },
+    {
+      "sequence": "HoneyBee",
+      "gop_results": [
+        {
+          "sequence": "HoneyBee",
+          "gop": 0,
+          "method": "mr_dlc2_subband",
+          "PSNR_dB": 27.65,
+          "MS_SSIM": 0.9075,
+          "LPIPS": 0.0857,
+          "BPP": 0.005057,
+          "total_bits": 153792,
+          "bitrate_kbps": 74.57,
+          "encode_s": 54.7,
+          "decode_s": 32.2,
+          "per_frame_psnr": [
+            27.78,
+            27.75,
+            27.76,
+            27.67,
+            27.61,
+            27.63,
+            27.64,
+            27.6,
+            27.58,
+            27.65,
+            27.7,
+            27.67,
+            27.66,
+            27.69,
+            27.71,
+            27.65,
+            27.63,
+            27.67,
+            27.72,
+            27.67,
+            27.64,
+            27.69,
+            27.71,
+            27.67,
+            27.65,
+            27.69,
+            27.73,
+            27.65,
+            27.59,
+            27.6,
+            27.58,
+            27.48,
+            27.41
+          ],
+          "high_freq_mode": "dlc2_subband",
+          "transition_align": "variance",
+          "dlc2_rank_frac": 0.5,
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              576,
+              1024
+            ],
+            [
+              720,
+              1280
+            ]
+          ],
+          "transition_steps": [
+            6,
+            11
+          ],
+          "K_per_stage": [
+            4096,
+            8192,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "HoneyBee",
+          "gop": 1,
+          "method": "mr_dlc2_subband",
+          "PSNR_dB": 27.68,
+          "MS_SSIM": 0.9077,
+          "LPIPS": 0.0866,
+          "BPP": 0.005057,
+          "total_bits": 153792,
+          "bitrate_kbps": 74.57,
+          "encode_s": 54.3,
+          "decode_s": 32.0,
+          "per_frame_psnr": [
+            27.77,
+            27.77,
+            27.79,
+            27.75,
+            27.71,
+            27.68,
+            27.67,
+            27.63,
+            27.6,
+            27.7,
+            27.78,
+            27.71,
+            27.7,
+            27.73,
+            27.74,
+            27.7,
+            27.69,
+            27.73,
+            27.79,
+            27.73,
+            27.69,
+            27.72,
+            27.73,
+            27.68,
+            27.65,
+            27.67,
+            27.7,
+            27.61,
+            27.55,
+            27.56,
+            27.52,
+            27.44,
+            27.38
+          ],
+          "high_freq_mode": "dlc2_subband",
+          "transition_align": "variance",
+          "dlc2_rank_frac": 0.5,
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              576,
+              1024
+            ],
+            [
+              720,
+              1280
+            ]
+          ],
+          "transition_steps": [
+            6,
+            11
+          ],
+          "K_per_stage": [
+            4096,
+            8192,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "HoneyBee",
+          "gop": 2,
+          "method": "mr_dlc2_subband",
+          "PSNR_dB": 27.67,
+          "MS_SSIM": 0.9072,
+          "LPIPS": 0.0859,
+          "BPP": 0.005057,
+          "total_bits": 153792,
+          "bitrate_kbps": 74.57,
+          "encode_s": 53.9,
+          "decode_s": 32.0,
+          "per_frame_psnr": [
+            27.69,
+            27.71,
+            27.75,
+            27.69,
+            27.65,
+            27.65,
+            27.65,
+            27.62,
+            27.59,
+            27.68,
+            27.73,
+            27.67,
+            27.65,
+            27.69,
+            27.7,
+            27.67,
+            27.67,
+            27.72,
+            27.76,
+            27.7,
+            27.66,
+            27.72,
+            27.73,
+            27.69,
+            27.67,
+            27.74,
+            27.76,
+            27.68,
+            27.61,
+            27.63,
+            27.59,
+            27.5,
+            27.43
+          ],
+          "high_freq_mode": "dlc2_subband",
+          "transition_align": "variance",
+          "dlc2_rank_frac": 0.5,
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              576,
+              1024
+            ],
+            [
+              720,
+              1280
+            ]
+          ],
+          "transition_steps": [
+            6,
+            11
+          ],
+          "K_per_stage": [
+            4096,
+            8192,
+            16384
+          ],
+          "S": 3
+        }
+      ],
+      "avg_PSNR": 27.67,
+      "avg_LPIPS": 0.0861,
+      "avg_BPP": 0.005057,
+      "avg_encode_s": 54.3,
+      "avg_decode_s": 32.1
+    }
+  ],
+  "overall": {
+    "PSNR_dB": 27.79,
+    "LPIPS": 0.1091,
+    "BPP": 0.005057,
+    "avg_encode_s": 55.1,
+    "avg_decode_s": 32.4
+  }
+}

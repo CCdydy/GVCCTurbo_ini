@@ -1,0 +1,77 @@
+{
+  "sequence": "Jockey",
+  "gop": 8,
+  "method": "mr_dlc1_codebook",
+  "PSNR_dB": 28.36,
+  "MS_SSIM": 0.8895,
+  "LPIPS": 0.1828,
+  "BPP": 0.002999,
+  "total_bits": 205200,
+  "bitrate_kbps": 99.49,
+  "encode_s": 52.6,
+  "decode_s": 56.0,
+  "per_frame_psnr": [
+    28.64,
+    28.76,
+    28.92,
+    29.13,
+    29.07,
+    29.05,
+    29.06,
+    29.04,
+    28.93,
+    28.91,
+    29.15,
+    29.02,
+    28.84,
+    28.92,
+    28.93,
+    29.16,
+    28.92,
+    28.6,
+    28.55,
+    28.37,
+    28.09,
+    28.16,
+    28.05,
+    28.09,
+    27.89,
+    27.52,
+    27.49,
+    27.54,
+    27.21,
+    27.08,
+    27.13,
+    27.1,
+    26.67
+  ],
+  "high_freq_mode": "dlc1_codebook",
+  "transition_align": "variance",
+  "dlc2_rank_frac": null,
+  "low_target_from_full": true,
+  "low_target_align": "none",
+  "resolutions": [
+    [
+      480,
+      832
+    ],
+    [
+      720,
+      1280
+    ],
+    [
+      1080,
+      1920
+    ]
+  ],
+  "transition_steps": [
+    6,
+    12
+  ],
+  "K_per_stage": [
+    16384,
+    16384,
+    16384
+  ],
+  "S": 3
+}

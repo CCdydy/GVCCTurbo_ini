@@ -1,0 +1,22 @@
+{
+  "PSNR": 20.342069625854492,
+  "MS_SSIM": 0.7492726445198059,
+  "LPIPS": 0.3983954191207886,
+  "BPP": 0.005050505050505051,
+  "kbps": 74.47272727272728,
+  "enc_s": 63.885995388031006,
+  "dec_s": 67.47860050201416,
+  "args": {
+    "seq": "Jockey",
+    "height": 720,
+    "width": 1280,
+    "start_frame": 0,
+    "K": 16384,
+    "M": 64,
+    "steps": 20,
+    "eta": 1.0,
+    "cfg": 6.0,
+    "seed": 42,
+    "out": "/home/rog/Desktop/gvcc_turbo/turbogvcc/exp_cogvideox_fun/out_720p"
+  }
+}
