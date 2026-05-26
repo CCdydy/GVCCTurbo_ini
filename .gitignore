@@ -58,10 +58,10 @@ wandb/
 # Claude Code
 .claude/
 
-# Internal exploration notes (kept locally only; RESEARCH_NOTES.md is the public design doc)
-exp_*/NOTES.md
-exp_v1_mr/REPORT.md
+# Local index stub (real Claude memory lives elsewhere)
 MEMORY.md
+
+# Raw experiment outputs (videos, codebooks) — only keep .md reports + .py scripts
 exp_*/results*/
 exp_*/out_*/
 exp_*/test_*.py
