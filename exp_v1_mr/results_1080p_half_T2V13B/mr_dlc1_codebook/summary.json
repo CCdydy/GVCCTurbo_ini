@@ -1,0 +1,4976 @@
+{
+  "experiment": "V1 MR-GVCC",
+  "timestamp": "2026-05-26T10:35:44.563875",
+  "config": {
+    "method": "mr_dlc1_codebook",
+    "wan_ckpt": "/home/rog/Desktop/gvcc_turbo/checkpoints/Wan2.1-T2V-1.3B-Diffusers",
+    "high_freq_mode": "dlc1_codebook",
+    "transition_align": "variance",
+    "dlc2_rank_frac": null,
+    "low_target_from_full": true,
+    "low_target_align": "none",
+    "full_resolution": "1920\u00d71080",
+    "low_resolution": "832\u00d7480",
+    "transition_step": 8,
+    "frames_per_gop": 33,
+    "M": 80,
+    "K": "K_low=4096,K_full=16384",
+    "steps": 20,
+    "ddim_tail": 3,
+    "g_scale": 3.0,
+    "S": 3,
+    "resolutions": [
+      [
+        480,
+        832
+      ],
+      [
+        720,
+        1280
+      ],
+      [
+        1080,
+        1920
+      ]
+    ],
+    "transition_steps": [
+      6,
+      12
+    ],
+    "K_per_stage": [
+      16384,
+      16384,
+      16384
+    ]
+  },
+  "sequences": [
+    {
+      "sequence": "Beauty",
+      "gop_results": [
+        {
+          "sequence": "Beauty",
+          "gop": 0,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.83,
+          "MS_SSIM": 0.8578,
+          "LPIPS": 0.2552,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 53.3,
+          "decode_s": 54.9,
+          "per_frame_psnr": [
+            29.43,
+            29.59,
+            29.68,
+            29.69,
+            29.85,
+            29.85,
+            29.92,
+            29.9,
+            29.85,
+            30.04,
+            30.2,
+            30.17,
+            30.2,
+            30.03,
+            30.06,
+            30.0,
+            29.92,
+            29.93,
+            30.09,
+            29.94,
+            29.85,
+            29.7,
+            29.88,
+            29.74,
+            29.79,
+            29.81,
+            29.84,
+            29.67,
+            29.59,
+            29.49,
+            29.59,
+            29.54,
+            29.45
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Beauty",
+          "gop": 1,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 30.02,
+          "MS_SSIM": 0.8643,
+          "LPIPS": 0.2633,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.2,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            29.78,
+            29.81,
+            29.95,
+            29.88,
+            30.08,
+            29.97,
+            30.07,
+            29.98,
+            29.89,
+            29.9,
+            30.16,
+            30.06,
+            30.16,
+            30.08,
+            30.13,
+            30.05,
+            30.05,
+            30.0,
+            30.13,
+            30.04,
+            30.07,
+            30.11,
+            30.21,
+            30.08,
+            29.97,
+            29.89,
+            30.04,
+            29.98,
+            29.99,
+            30.05,
+            30.14,
+            29.96,
+            29.87
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Beauty",
+          "gop": 2,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 30.09,
+          "MS_SSIM": 0.865,
+          "LPIPS": 0.2977,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.3,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            30.05,
+            29.91,
+            29.89,
+            29.81,
+            29.97,
+            29.75,
+            29.8,
+            29.68,
+            29.67,
+            29.67,
+            29.93,
+            30.11,
+            30.16,
+            30.07,
+            30.15,
+            30.0,
+            30.05,
+            30.11,
+            30.29,
+            30.2,
+            30.31,
+            30.35,
+            30.61,
+            30.51,
+            30.55,
+            30.54,
+            30.64,
+            30.44,
+            30.31,
+            30.0,
+            30.04,
+            29.81,
+            29.59
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Beauty",
+          "gop": 3,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.86,
+          "MS_SSIM": 0.8632,
+          "LPIPS": 0.3155,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.3,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            29.93,
+            29.83,
+            30.08,
+            29.87,
+            29.97,
+            29.75,
+            29.81,
+            29.64,
+            29.86,
+            29.92,
+            30.2,
+            30.04,
+            29.99,
+            29.89,
+            29.94,
+            29.81,
+            29.72,
+            29.56,
+            29.79,
+            29.75,
+            29.7,
+            29.76,
+            29.92,
+            29.84,
+            29.7,
+            29.84,
+            29.95,
+            29.9,
+            29.93,
+            29.92,
+            29.93,
+            29.84,
+            29.75
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Beauty",
+          "gop": 4,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 30.25,
+          "MS_SSIM": 0.8616,
+          "LPIPS": 0.3544,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.4,
+          "decode_s": 56.1,
+          "per_frame_psnr": [
+            29.84,
+            29.76,
+            29.83,
+            29.75,
+            29.99,
+            29.83,
+            29.9,
+            29.74,
+            29.69,
+            29.75,
+            30.13,
+            30.3,
+            30.35,
+            30.31,
+            30.47,
+            30.42,
+            30.55,
+            30.6,
+            30.78,
+            30.63,
+            30.65,
+            30.74,
+            30.9,
+            30.62,
+            30.64,
+            30.66,
+            30.81,
+            30.49,
+            30.43,
+            30.16,
+            30.13,
+            29.79,
+            29.53
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Beauty",
+          "gop": 5,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 30.38,
+          "MS_SSIM": 0.8664,
+          "LPIPS": 0.3354,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 56.2,
+          "per_frame_psnr": [
+            29.88,
+            29.86,
+            30.05,
+            30.08,
+            30.51,
+            30.22,
+            30.38,
+            30.12,
+            30.19,
+            30.22,
+            30.27,
+            30.21,
+            30.39,
+            30.49,
+            30.63,
+            30.5,
+            30.42,
+            30.5,
+            30.69,
+            30.6,
+            30.72,
+            30.68,
+            30.75,
+            30.43,
+            30.52,
+            30.59,
+            30.71,
+            30.47,
+            30.57,
+            30.36,
+            30.46,
+            30.14,
+            30.0
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Beauty",
+          "gop": 6,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.97,
+          "MS_SSIM": 0.8612,
+          "LPIPS": 0.3467,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 56.2,
+          "per_frame_psnr": [
+            29.82,
+            29.85,
+            30.07,
+            29.98,
+            30.12,
+            29.78,
+            29.94,
+            29.87,
+            29.98,
+            30.06,
+            30.24,
+            30.17,
+            30.12,
+            30.07,
+            30.13,
+            29.97,
+            29.99,
+            29.82,
+            30.02,
+            30.01,
+            30.0,
+            30.17,
+            30.36,
+            30.21,
+            30.07,
+            30.04,
+            30.04,
+            29.75,
+            29.8,
+            29.72,
+            29.85,
+            29.61,
+            29.42
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Beauty",
+          "gop": 7,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 30.15,
+          "MS_SSIM": 0.8641,
+          "LPIPS": 0.3416,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 56.2,
+          "per_frame_psnr": [
+            29.71,
+            29.78,
+            29.97,
+            29.9,
+            30.14,
+            29.96,
+            30.13,
+            29.96,
+            29.97,
+            30.07,
+            30.34,
+            30.21,
+            30.29,
+            30.29,
+            30.34,
+            30.21,
+            30.22,
+            30.28,
+            30.36,
+            30.17,
+            30.2,
+            30.23,
+            30.24,
+            30.07,
+            30.08,
+            30.18,
+            30.31,
+            30.28,
+            30.31,
+            30.26,
+            30.35,
+            30.05,
+            29.93
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Beauty",
+          "gop": 8,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.72,
+          "MS_SSIM": 0.8602,
+          "LPIPS": 0.3148,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 56.2,
+          "per_frame_psnr": [
+            29.62,
+            29.73,
+            29.82,
+            29.73,
+            29.96,
+            29.61,
+            29.63,
+            29.57,
+            29.53,
+            29.41,
+            29.52,
+            29.46,
+            29.43,
+            29.5,
+            29.59,
+            29.66,
+            29.59,
+            29.62,
+            29.81,
+            29.78,
+            29.91,
+            29.94,
+            30.07,
+            29.9,
+            29.82,
+            29.84,
+            30.04,
+            29.94,
+            29.89,
+            29.84,
+            29.92,
+            29.72,
+            29.52
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        }
+      ],
+      "avg_PSNR": 30.03,
+      "avg_LPIPS": 0.3138,
+      "avg_BPP": 0.002999,
+      "avg_encode_s": 52.5,
+      "avg_decode_s": 56.0
+    },
+    {
+      "sequence": "Bosphorus",
+      "gop_results": [
+        {
+          "sequence": "Bosphorus",
+          "gop": 0,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.9,
+          "MS_SSIM": 0.864,
+          "LPIPS": 0.1499,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.4,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.44,
+            28.73,
+            28.67,
+            28.78,
+            28.85,
+            28.99,
+            28.95,
+            28.96,
+            29.03,
+            29.1,
+            28.99,
+            29.01,
+            29.03,
+            29.11,
+            29.0,
+            28.95,
+            28.93,
+            29.0,
+            28.91,
+            28.93,
+            28.97,
+            29.06,
+            28.96,
+            28.93,
+            28.91,
+            28.99,
+            28.89,
+            28.85,
+            28.87,
+            28.86,
+            28.72,
+            28.63,
+            28.58
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Bosphorus",
+          "gop": 1,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.96,
+          "MS_SSIM": 0.8674,
+          "LPIPS": 0.1472,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.4,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.52,
+            28.82,
+            28.8,
+            28.97,
+            29.05,
+            29.19,
+            29.13,
+            29.16,
+            29.19,
+            29.16,
+            29.02,
+            29.05,
+            29.11,
+            29.13,
+            29.02,
+            29.02,
+            28.99,
+            29.04,
+            28.97,
+            28.99,
+            29.02,
+            29.05,
+            28.97,
+            28.94,
+            28.94,
+            29.01,
+            28.93,
+            28.9,
+            28.9,
+            28.85,
+            28.71,
+            28.62,
+            28.56
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Bosphorus",
+          "gop": 2,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.14,
+          "MS_SSIM": 0.8711,
+          "LPIPS": 0.1429,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.4,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.79,
+            29.06,
+            29.0,
+            29.09,
+            29.16,
+            29.31,
+            29.28,
+            29.29,
+            29.33,
+            29.36,
+            29.22,
+            29.25,
+            29.29,
+            29.29,
+            29.14,
+            29.09,
+            29.09,
+            29.18,
+            29.11,
+            29.13,
+            29.18,
+            29.27,
+            29.22,
+            29.19,
+            29.18,
+            29.23,
+            29.14,
+            29.12,
+            29.11,
+            29.08,
+            28.92,
+            28.79,
+            28.71
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Bosphorus",
+          "gop": 3,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.07,
+          "MS_SSIM": 0.8703,
+          "LPIPS": 0.1468,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.65,
+            28.91,
+            28.89,
+            29.02,
+            29.1,
+            29.24,
+            29.2,
+            29.2,
+            29.23,
+            29.26,
+            29.16,
+            29.19,
+            29.21,
+            29.23,
+            29.14,
+            29.11,
+            29.11,
+            29.2,
+            29.12,
+            29.15,
+            29.18,
+            29.22,
+            29.15,
+            29.12,
+            29.09,
+            29.12,
+            29.03,
+            29.01,
+            29.01,
+            28.99,
+            28.83,
+            28.72,
+            28.65
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Bosphorus",
+          "gop": 4,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.11,
+          "MS_SSIM": 0.8723,
+          "LPIPS": 0.1471,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.74,
+            29.01,
+            28.98,
+            29.11,
+            29.2,
+            29.3,
+            29.25,
+            29.28,
+            29.31,
+            29.33,
+            29.23,
+            29.24,
+            29.25,
+            29.25,
+            29.15,
+            29.13,
+            29.11,
+            29.2,
+            29.14,
+            29.17,
+            29.2,
+            29.22,
+            29.14,
+            29.13,
+            29.12,
+            29.17,
+            29.08,
+            29.05,
+            29.04,
+            29.0,
+            28.83,
+            28.7,
+            28.64
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Bosphorus",
+          "gop": 5,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.18,
+          "MS_SSIM": 0.869,
+          "LPIPS": 0.1499,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            28.66,
+            28.98,
+            28.99,
+            29.13,
+            29.22,
+            29.39,
+            29.39,
+            29.43,
+            29.5,
+            29.54,
+            29.44,
+            29.45,
+            29.47,
+            29.49,
+            29.34,
+            29.27,
+            29.23,
+            29.27,
+            29.19,
+            29.21,
+            29.21,
+            29.27,
+            29.19,
+            29.18,
+            29.17,
+            29.21,
+            29.08,
+            29.02,
+            29.0,
+            28.97,
+            28.79,
+            28.67,
+            28.58
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Bosphorus",
+          "gop": 6,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.2,
+          "MS_SSIM": 0.8712,
+          "LPIPS": 0.1443,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.74,
+            29.04,
+            29.01,
+            29.13,
+            29.19,
+            29.32,
+            29.27,
+            29.3,
+            29.36,
+            29.36,
+            29.25,
+            29.29,
+            29.31,
+            29.35,
+            29.24,
+            29.23,
+            29.24,
+            29.32,
+            29.25,
+            29.26,
+            29.28,
+            29.34,
+            29.26,
+            29.23,
+            29.25,
+            29.3,
+            29.23,
+            29.22,
+            29.22,
+            29.18,
+            28.98,
+            28.82,
+            28.72
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Bosphorus",
+          "gop": 7,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.27,
+          "MS_SSIM": 0.8718,
+          "LPIPS": 0.1413,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.6,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            28.89,
+            29.2,
+            29.14,
+            29.24,
+            29.26,
+            29.41,
+            29.34,
+            29.36,
+            29.4,
+            29.48,
+            29.35,
+            29.39,
+            29.42,
+            29.49,
+            29.36,
+            29.31,
+            29.3,
+            29.39,
+            29.31,
+            29.35,
+            29.38,
+            29.44,
+            29.34,
+            29.3,
+            29.3,
+            29.35,
+            29.25,
+            29.22,
+            29.19,
+            29.17,
+            28.98,
+            28.88,
+            28.79
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Bosphorus",
+          "gop": 8,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 29.42,
+          "MS_SSIM": 0.8748,
+          "LPIPS": 0.1335,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.6,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            28.9,
+            29.25,
+            29.22,
+            29.33,
+            29.37,
+            29.58,
+            29.53,
+            29.53,
+            29.57,
+            29.64,
+            29.53,
+            29.56,
+            29.59,
+            29.67,
+            29.55,
+            29.5,
+            29.5,
+            29.61,
+            29.49,
+            29.49,
+            29.51,
+            29.59,
+            29.45,
+            29.42,
+            29.41,
+            29.54,
+            29.41,
+            29.36,
+            29.35,
+            29.37,
+            29.17,
+            29.03,
+            28.96
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        }
+      ],
+      "avg_PSNR": 29.14,
+      "avg_LPIPS": 0.1448,
+      "avg_BPP": 0.002999,
+      "avg_encode_s": 52.5,
+      "avg_decode_s": 55.8
+    },
+    {
+      "sequence": "HoneyBee",
+      "gop_results": [
+        {
+          "sequence": "HoneyBee",
+          "gop": 0,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.55,
+          "MS_SSIM": 0.9017,
+          "LPIPS": 0.123,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.8,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            28.71,
+            28.7,
+            28.66,
+            28.66,
+            28.7,
+            28.65,
+            28.62,
+            28.55,
+            28.54,
+            28.56,
+            28.57,
+            28.57,
+            28.59,
+            28.58,
+            28.57,
+            28.53,
+            28.54,
+            28.53,
+            28.53,
+            28.53,
+            28.55,
+            28.55,
+            28.53,
+            28.49,
+            28.51,
+            28.49,
+            28.49,
+            28.48,
+            28.5,
+            28.46,
+            28.43,
+            28.37,
+            28.35
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "HoneyBee",
+          "gop": 1,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.54,
+          "MS_SSIM": 0.9011,
+          "LPIPS": 0.1235,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            28.63,
+            28.64,
+            28.6,
+            28.62,
+            28.65,
+            28.61,
+            28.57,
+            28.5,
+            28.5,
+            28.54,
+            28.57,
+            28.55,
+            28.56,
+            28.56,
+            28.57,
+            28.54,
+            28.55,
+            28.55,
+            28.58,
+            28.57,
+            28.57,
+            28.56,
+            28.56,
+            28.51,
+            28.52,
+            28.49,
+            28.5,
+            28.5,
+            28.51,
+            28.47,
+            28.44,
+            28.39,
+            28.39
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "HoneyBee",
+          "gop": 2,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.58,
+          "MS_SSIM": 0.9019,
+          "LPIPS": 0.1219,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.9,
+          "decode_s": 56.3,
+          "per_frame_psnr": [
+            28.7,
+            28.7,
+            28.68,
+            28.67,
+            28.7,
+            28.65,
+            28.62,
+            28.56,
+            28.54,
+            28.56,
+            28.6,
+            28.6,
+            28.61,
+            28.59,
+            28.58,
+            28.56,
+            28.57,
+            28.56,
+            28.57,
+            28.56,
+            28.57,
+            28.57,
+            28.58,
+            28.54,
+            28.55,
+            28.53,
+            28.54,
+            28.53,
+            28.54,
+            28.52,
+            28.5,
+            28.45,
+            28.46
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "HoneyBee",
+          "gop": 3,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.62,
+          "MS_SSIM": 0.9027,
+          "LPIPS": 0.1191,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.9,
+          "decode_s": 56.1,
+          "per_frame_psnr": [
+            28.73,
+            28.74,
+            28.7,
+            28.69,
+            28.72,
+            28.69,
+            28.65,
+            28.58,
+            28.56,
+            28.61,
+            28.63,
+            28.62,
+            28.62,
+            28.63,
+            28.63,
+            28.6,
+            28.62,
+            28.62,
+            28.64,
+            28.64,
+            28.67,
+            28.65,
+            28.63,
+            28.59,
+            28.59,
+            28.57,
+            28.57,
+            28.57,
+            28.59,
+            28.56,
+            28.54,
+            28.49,
+            28.51
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "HoneyBee",
+          "gop": 4,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.73,
+          "MS_SSIM": 0.9049,
+          "LPIPS": 0.1177,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.4,
+          "decode_s": 55.7,
+          "per_frame_psnr": [
+            28.91,
+            28.89,
+            28.85,
+            28.86,
+            28.91,
+            28.85,
+            28.81,
+            28.73,
+            28.71,
+            28.75,
+            28.76,
+            28.74,
+            28.76,
+            28.74,
+            28.73,
+            28.69,
+            28.72,
+            28.71,
+            28.72,
+            28.72,
+            28.74,
+            28.71,
+            28.71,
+            28.67,
+            28.69,
+            28.67,
+            28.66,
+            28.66,
+            28.69,
+            28.65,
+            28.62,
+            28.57,
+            28.59
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "HoneyBee",
+          "gop": 5,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.67,
+          "MS_SSIM": 0.9029,
+          "LPIPS": 0.1183,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.81,
+            28.8,
+            28.77,
+            28.78,
+            28.82,
+            28.76,
+            28.72,
+            28.65,
+            28.64,
+            28.69,
+            28.71,
+            28.7,
+            28.7,
+            28.7,
+            28.69,
+            28.65,
+            28.67,
+            28.66,
+            28.66,
+            28.66,
+            28.68,
+            28.67,
+            28.66,
+            28.62,
+            28.63,
+            28.62,
+            28.61,
+            28.6,
+            28.62,
+            28.59,
+            28.58,
+            28.53,
+            28.54
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "HoneyBee",
+          "gop": 6,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.71,
+          "MS_SSIM": 0.9047,
+          "LPIPS": 0.1168,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            28.84,
+            28.83,
+            28.8,
+            28.81,
+            28.86,
+            28.79,
+            28.75,
+            28.68,
+            28.69,
+            28.71,
+            28.73,
+            28.73,
+            28.74,
+            28.72,
+            28.72,
+            28.68,
+            28.7,
+            28.69,
+            28.7,
+            28.7,
+            28.72,
+            28.7,
+            28.7,
+            28.67,
+            28.69,
+            28.66,
+            28.66,
+            28.66,
+            28.68,
+            28.65,
+            28.62,
+            28.57,
+            28.58
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "HoneyBee",
+          "gop": 7,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.66,
+          "MS_SSIM": 0.9048,
+          "LPIPS": 0.1166,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.8,
+          "decode_s": 56.2,
+          "per_frame_psnr": [
+            28.83,
+            28.82,
+            28.8,
+            28.79,
+            28.84,
+            28.77,
+            28.74,
+            28.67,
+            28.65,
+            28.69,
+            28.7,
+            28.69,
+            28.68,
+            28.67,
+            28.67,
+            28.62,
+            28.64,
+            28.63,
+            28.64,
+            28.64,
+            28.65,
+            28.63,
+            28.63,
+            28.59,
+            28.6,
+            28.58,
+            28.59,
+            28.6,
+            28.61,
+            28.58,
+            28.56,
+            28.5,
+            28.52
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "HoneyBee",
+          "gop": 8,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.61,
+          "MS_SSIM": 0.9036,
+          "LPIPS": 0.1189,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 56.1,
+          "per_frame_psnr": [
+            28.8,
+            28.78,
+            28.73,
+            28.73,
+            28.79,
+            28.73,
+            28.67,
+            28.61,
+            28.61,
+            28.63,
+            28.64,
+            28.63,
+            28.63,
+            28.62,
+            28.61,
+            28.58,
+            28.6,
+            28.58,
+            28.6,
+            28.6,
+            28.62,
+            28.6,
+            28.6,
+            28.56,
+            28.58,
+            28.55,
+            28.54,
+            28.53,
+            28.56,
+            28.52,
+            28.5,
+            28.45,
+            28.47
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        }
+      ],
+      "avg_PSNR": 28.63,
+      "avg_LPIPS": 0.1195,
+      "avg_BPP": 0.002999,
+      "avg_encode_s": 52.7,
+      "avg_decode_s": 56.0
+    },
+    {
+      "sequence": "Jockey",
+      "gop_results": [
+        {
+          "sequence": "Jockey",
+          "gop": 0,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.42,
+          "MS_SSIM": 0.8551,
+          "LPIPS": 0.163,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.6,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            28.51,
+            28.22,
+            28.56,
+            28.54,
+            28.44,
+            28.14,
+            28.5,
+            28.63,
+            28.36,
+            28.13,
+            28.49,
+            28.66,
+            28.2,
+            28.19,
+            28.51,
+            28.67,
+            28.51,
+            28.39,
+            28.68,
+            28.77,
+            28.63,
+            28.35,
+            28.6,
+            28.77,
+            28.51,
+            28.26,
+            28.47,
+            28.63,
+            28.29,
+            28.17,
+            28.1,
+            28.13,
+            27.77
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Jockey",
+          "gop": 1,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.61,
+          "MS_SSIM": 0.8616,
+          "LPIPS": 0.1624,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.6,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            28.79,
+            28.66,
+            28.75,
+            28.96,
+            28.74,
+            28.59,
+            28.64,
+            28.89,
+            28.7,
+            28.53,
+            28.68,
+            28.86,
+            28.67,
+            28.52,
+            28.64,
+            28.79,
+            28.59,
+            28.43,
+            28.65,
+            28.79,
+            28.67,
+            28.52,
+            28.6,
+            28.83,
+            28.59,
+            28.36,
+            28.61,
+            28.8,
+            28.58,
+            28.42,
+            28.3,
+            28.38,
+            27.74
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Jockey",
+          "gop": 2,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.33,
+          "MS_SSIM": 0.8579,
+          "LPIPS": 0.1686,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            28.58,
+            28.33,
+            28.48,
+            28.73,
+            28.48,
+            28.29,
+            28.43,
+            28.7,
+            28.57,
+            28.41,
+            28.47,
+            28.64,
+            28.33,
+            28.2,
+            28.33,
+            28.59,
+            28.29,
+            28.19,
+            28.28,
+            28.4,
+            28.33,
+            28.36,
+            28.4,
+            28.57,
+            28.25,
+            28.19,
+            28.29,
+            28.32,
+            28.08,
+            27.91,
+            27.93,
+            27.91,
+            27.59
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Jockey",
+          "gop": 3,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.5,
+          "MS_SSIM": 0.8645,
+          "LPIPS": 0.1714,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.1,
+            28.14,
+            28.37,
+            28.6,
+            28.42,
+            28.27,
+            28.36,
+            28.56,
+            28.35,
+            28.26,
+            28.52,
+            28.75,
+            28.5,
+            28.5,
+            28.45,
+            28.88,
+            28.6,
+            28.6,
+            28.69,
+            29.06,
+            28.79,
+            28.72,
+            28.77,
+            29.17,
+            28.67,
+            28.68,
+            28.58,
+            28.74,
+            28.47,
+            28.26,
+            28.12,
+            28.13,
+            27.37
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Jockey",
+          "gop": 4,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.42,
+          "MS_SSIM": 0.875,
+          "LPIPS": 0.1717,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.6,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.79,
+            28.51,
+            28.59,
+            28.88,
+            28.46,
+            28.32,
+            28.51,
+            28.68,
+            28.4,
+            28.25,
+            28.53,
+            28.79,
+            28.41,
+            28.24,
+            28.6,
+            28.81,
+            28.55,
+            28.36,
+            28.68,
+            28.79,
+            28.6,
+            28.4,
+            28.64,
+            28.76,
+            28.26,
+            28.1,
+            28.28,
+            28.43,
+            28.1,
+            27.74,
+            28.01,
+            27.95,
+            27.41
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Jockey",
+          "gop": 5,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.51,
+          "MS_SSIM": 0.8787,
+          "LPIPS": 0.1692,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.31,
+            27.98,
+            28.32,
+            28.61,
+            28.33,
+            28.14,
+            28.58,
+            28.77,
+            28.62,
+            28.51,
+            28.72,
+            28.96,
+            28.57,
+            28.45,
+            28.67,
+            28.86,
+            28.56,
+            28.29,
+            28.53,
+            28.68,
+            28.5,
+            28.48,
+            28.57,
+            28.9,
+            28.55,
+            28.44,
+            28.59,
+            28.78,
+            28.5,
+            28.43,
+            28.47,
+            28.4,
+            27.8
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Jockey",
+          "gop": 6,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.72,
+          "MS_SSIM": 0.8904,
+          "LPIPS": 0.1635,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            28.7,
+            28.54,
+            28.77,
+            29.0,
+            28.66,
+            28.6,
+            28.8,
+            28.89,
+            28.71,
+            28.56,
+            28.77,
+            28.88,
+            28.62,
+            28.51,
+            28.79,
+            29.01,
+            28.67,
+            28.68,
+            28.98,
+            29.13,
+            28.93,
+            28.87,
+            29.04,
+            28.84,
+            28.73,
+            28.6,
+            28.59,
+            28.93,
+            28.68,
+            28.63,
+            28.59,
+            28.43,
+            27.76
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Jockey",
+          "gop": 7,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.98,
+          "MS_SSIM": 0.8997,
+          "LPIPS": 0.158,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            28.76,
+            28.5,
+            28.74,
+            29.16,
+            28.81,
+            28.88,
+            29.03,
+            29.23,
+            28.89,
+            28.85,
+            29.05,
+            29.19,
+            28.73,
+            28.97,
+            29.08,
+            29.24,
+            28.86,
+            29.08,
+            29.09,
+            29.27,
+            28.98,
+            29.07,
+            29.3,
+            29.3,
+            29.04,
+            28.92,
+            29.06,
+            29.16,
+            28.98,
+            28.93,
+            29.02,
+            28.84,
+            28.2
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "Jockey",
+          "gop": 8,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 28.36,
+          "MS_SSIM": 0.8895,
+          "LPIPS": 0.1828,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.6,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            28.64,
+            28.76,
+            28.92,
+            29.13,
+            29.07,
+            29.05,
+            29.06,
+            29.04,
+            28.93,
+            28.91,
+            29.15,
+            29.02,
+            28.84,
+            28.92,
+            28.93,
+            29.16,
+            28.92,
+            28.6,
+            28.55,
+            28.37,
+            28.09,
+            28.16,
+            28.05,
+            28.09,
+            27.89,
+            27.52,
+            27.49,
+            27.54,
+            27.21,
+            27.08,
+            27.13,
+            27.1,
+            26.67
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        }
+      ],
+      "avg_PSNR": 28.54,
+      "avg_LPIPS": 0.1678,
+      "avg_BPP": 0.002999,
+      "avg_encode_s": 52.5,
+      "avg_decode_s": 55.9
+    },
+    {
+      "sequence": "ReadySteadyGo",
+      "gop_results": [
+        {
+          "sequence": "ReadySteadyGo",
+          "gop": 0,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 24.01,
+          "MS_SSIM": 0.8346,
+          "LPIPS": 0.2162,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.6,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            23.89,
+            23.94,
+            23.91,
+            23.95,
+            23.96,
+            24.0,
+            23.98,
+            23.86,
+            23.83,
+            23.94,
+            23.99,
+            23.95,
+            23.87,
+            23.95,
+            23.97,
+            23.92,
+            23.9,
+            24.07,
+            24.03,
+            23.96,
+            23.88,
+            24.02,
+            24.04,
+            24.08,
+            24.01,
+            24.18,
+            24.13,
+            24.27,
+            24.2,
+            24.37,
+            24.27,
+            24.17,
+            23.87
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ReadySteadyGo",
+          "gop": 1,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 24.26,
+          "MS_SSIM": 0.8321,
+          "LPIPS": 0.2014,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            23.98,
+            24.2,
+            24.09,
+            24.09,
+            24.03,
+            24.28,
+            24.19,
+            24.16,
+            24.11,
+            24.4,
+            24.3,
+            24.26,
+            24.21,
+            24.4,
+            24.33,
+            24.27,
+            24.12,
+            24.34,
+            24.31,
+            24.31,
+            24.3,
+            24.48,
+            24.5,
+            24.43,
+            24.33,
+            24.42,
+            24.47,
+            24.36,
+            24.33,
+            24.34,
+            24.31,
+            24.12,
+            23.85
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ReadySteadyGo",
+          "gop": 2,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 24.09,
+          "MS_SSIM": 0.8301,
+          "LPIPS": 0.1976,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            24.23,
+            24.19,
+            24.16,
+            24.2,
+            24.15,
+            24.13,
+            24.1,
+            24.06,
+            24.01,
+            24.08,
+            24.03,
+            23.97,
+            23.94,
+            23.92,
+            23.96,
+            23.85,
+            23.94,
+            24.09,
+            24.14,
+            24.08,
+            24.15,
+            24.27,
+            24.35,
+            24.36,
+            24.24,
+            24.28,
+            24.14,
+            24.13,
+            23.94,
+            24.04,
+            24.11,
+            23.93,
+            23.64
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ReadySteadyGo",
+          "gop": 3,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 24.16,
+          "MS_SSIM": 0.8288,
+          "LPIPS": 0.2009,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.6,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            24.04,
+            23.81,
+            23.94,
+            24.08,
+            24.0,
+            23.82,
+            24.08,
+            24.14,
+            24.12,
+            23.94,
+            24.28,
+            24.27,
+            24.16,
+            23.87,
+            24.18,
+            24.28,
+            24.23,
+            24.01,
+            24.28,
+            24.43,
+            24.37,
+            24.17,
+            24.39,
+            24.29,
+            24.38,
+            24.16,
+            24.39,
+            24.48,
+            24.39,
+            24.04,
+            24.17,
+            24.12,
+            23.81
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ReadySteadyGo",
+          "gop": 4,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 24.27,
+          "MS_SSIM": 0.8244,
+          "LPIPS": 0.2069,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            24.29,
+            24.06,
+            24.19,
+            24.43,
+            24.32,
+            24.07,
+            24.35,
+            24.52,
+            24.45,
+            24.12,
+            24.46,
+            24.52,
+            24.29,
+            24.08,
+            24.36,
+            24.48,
+            24.19,
+            23.96,
+            24.31,
+            24.45,
+            24.18,
+            24.09,
+            24.26,
+            24.45,
+            24.33,
+            24.07,
+            24.21,
+            24.4,
+            24.37,
+            24.22,
+            24.27,
+            24.29,
+            24.02
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ReadySteadyGo",
+          "gop": 5,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 24.78,
+          "MS_SSIM": 0.8385,
+          "LPIPS": 0.1925,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            24.91,
+            24.54,
+            24.72,
+            24.79,
+            24.67,
+            24.5,
+            24.83,
+            25.02,
+            25.01,
+            24.73,
+            24.98,
+            25.2,
+            25.03,
+            24.93,
+            25.03,
+            25.14,
+            24.94,
+            24.71,
+            24.94,
+            24.96,
+            24.74,
+            24.52,
+            24.76,
+            24.77,
+            24.71,
+            24.58,
+            24.75,
+            24.86,
+            24.61,
+            24.42,
+            24.53,
+            24.56,
+            24.26
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ReadySteadyGo",
+          "gop": 6,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.31,
+          "MS_SSIM": 0.8568,
+          "LPIPS": 0.1725,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.6,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            25.17,
+            25.08,
+            25.24,
+            25.33,
+            25.26,
+            25.14,
+            25.32,
+            25.56,
+            25.4,
+            25.36,
+            25.39,
+            25.57,
+            25.44,
+            25.24,
+            25.44,
+            25.52,
+            25.29,
+            25.24,
+            25.46,
+            25.5,
+            25.28,
+            25.2,
+            25.34,
+            25.54,
+            25.45,
+            25.32,
+            25.41,
+            25.44,
+            25.36,
+            25.14,
+            25.18,
+            25.0,
+            24.65
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ReadySteadyGo",
+          "gop": 7,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.43,
+          "MS_SSIM": 0.8545,
+          "LPIPS": 0.1714,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 55.9,
+          "per_frame_psnr": [
+            25.5,
+            25.14,
+            25.24,
+            25.57,
+            25.4,
+            25.13,
+            25.39,
+            25.68,
+            25.63,
+            25.45,
+            25.5,
+            25.85,
+            25.67,
+            25.51,
+            25.65,
+            25.82,
+            25.72,
+            25.55,
+            25.69,
+            25.85,
+            25.56,
+            25.44,
+            25.54,
+            25.76,
+            25.47,
+            25.3,
+            25.32,
+            25.53,
+            25.37,
+            25.05,
+            24.85,
+            24.8,
+            24.41
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ReadySteadyGo",
+          "gop": 8,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 24.75,
+          "MS_SSIM": 0.8418,
+          "LPIPS": 0.1897,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.4,
+          "decode_s": 55.7,
+          "per_frame_psnr": [
+            25.27,
+            25.08,
+            25.16,
+            25.26,
+            25.18,
+            24.97,
+            25.01,
+            25.21,
+            25.1,
+            24.87,
+            25.03,
+            25.21,
+            24.98,
+            24.81,
+            24.99,
+            25.18,
+            24.95,
+            24.8,
+            24.79,
+            24.89,
+            24.6,
+            24.46,
+            24.54,
+            24.75,
+            24.5,
+            24.46,
+            24.57,
+            24.54,
+            24.22,
+            23.9,
+            24.03,
+            24.0,
+            23.44
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        }
+      ],
+      "avg_PSNR": 24.56,
+      "avg_LPIPS": 0.1943,
+      "avg_BPP": 0.002999,
+      "avg_encode_s": 52.6,
+      "avg_decode_s": 55.9
+    },
+    {
+      "sequence": "ShakeNDry",
+      "gop_results": [
+        {
+          "sequence": "ShakeNDry",
+          "gop": 0,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 24.79,
+          "MS_SSIM": 0.6515,
+          "LPIPS": 0.4247,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.3,
+          "decode_s": 55.7,
+          "per_frame_psnr": [
+            24.68,
+            24.65,
+            24.92,
+            24.78,
+            24.85,
+            24.77,
+            24.96,
+            24.72,
+            24.83,
+            24.8,
+            25.01,
+            24.78,
+            24.8,
+            24.76,
+            24.97,
+            24.82,
+            24.87,
+            24.77,
+            24.99,
+            24.76,
+            24.73,
+            24.72,
+            24.9,
+            24.7,
+            24.74,
+            24.72,
+            24.87,
+            24.7,
+            24.78,
+            24.64,
+            24.82,
+            24.6,
+            24.54
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ShakeNDry",
+          "gop": 1,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 24.82,
+          "MS_SSIM": 0.6488,
+          "LPIPS": 0.4108,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.4,
+          "decode_s": 55.7,
+          "per_frame_psnr": [
+            24.66,
+            24.69,
+            25.0,
+            24.82,
+            24.89,
+            24.81,
+            25.03,
+            24.82,
+            24.85,
+            24.81,
+            25.01,
+            24.87,
+            24.9,
+            24.85,
+            24.99,
+            24.8,
+            24.87,
+            24.82,
+            25.01,
+            24.78,
+            24.74,
+            24.74,
+            24.91,
+            24.74,
+            24.74,
+            24.77,
+            24.93,
+            24.77,
+            24.75,
+            24.75,
+            24.81,
+            24.64,
+            24.64
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ShakeNDry",
+          "gop": 2,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.06,
+          "MS_SSIM": 0.6575,
+          "LPIPS": 0.4188,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            24.76,
+            24.84,
+            25.07,
+            24.94,
+            25.01,
+            24.92,
+            25.08,
+            24.9,
+            24.94,
+            25.03,
+            25.19,
+            25.03,
+            25.08,
+            25.12,
+            25.19,
+            24.98,
+            25.01,
+            25.05,
+            25.24,
+            25.08,
+            25.06,
+            25.08,
+            25.27,
+            25.1,
+            25.11,
+            25.13,
+            25.23,
+            25.07,
+            25.12,
+            25.09,
+            25.2,
+            24.99,
+            24.99
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ShakeNDry",
+          "gop": 3,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.34,
+          "MS_SSIM": 0.6785,
+          "LPIPS": 0.4011,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 56.1,
+          "per_frame_psnr": [
+            25.04,
+            25.07,
+            25.32,
+            25.18,
+            25.27,
+            25.24,
+            25.39,
+            25.22,
+            25.26,
+            25.28,
+            25.44,
+            25.32,
+            25.34,
+            25.35,
+            25.48,
+            25.3,
+            25.34,
+            25.38,
+            25.55,
+            25.39,
+            25.34,
+            25.41,
+            25.54,
+            25.4,
+            25.44,
+            25.42,
+            25.5,
+            25.4,
+            25.43,
+            25.36,
+            25.41,
+            25.23,
+            25.21
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ShakeNDry",
+          "gop": 4,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.87,
+          "MS_SSIM": 0.7202,
+          "LPIPS": 0.3914,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.8,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            25.45,
+            25.58,
+            25.75,
+            25.67,
+            25.74,
+            25.75,
+            25.87,
+            25.72,
+            25.74,
+            25.8,
+            25.94,
+            25.84,
+            25.89,
+            25.91,
+            26.02,
+            25.92,
+            25.94,
+            26.0,
+            26.08,
+            25.98,
+            25.97,
+            26.01,
+            26.05,
+            25.96,
+            25.95,
+            25.99,
+            26.02,
+            25.93,
+            25.92,
+            25.9,
+            25.86,
+            25.75,
+            25.67
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ShakeNDry",
+          "gop": 5,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 26.19,
+          "MS_SSIM": 0.7566,
+          "LPIPS": 0.3924,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            26.04,
+            26.09,
+            26.12,
+            26.07,
+            26.12,
+            26.12,
+            26.11,
+            26.03,
+            26.03,
+            26.16,
+            26.2,
+            26.15,
+            26.17,
+            26.23,
+            26.23,
+            26.19,
+            26.21,
+            26.28,
+            26.27,
+            26.22,
+            26.25,
+            26.32,
+            26.32,
+            26.26,
+            26.3,
+            26.34,
+            26.33,
+            26.26,
+            26.21,
+            26.21,
+            26.16,
+            26.1,
+            26.04
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ShakeNDry",
+          "gop": 6,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 26.43,
+          "MS_SSIM": 0.7681,
+          "LPIPS": 0.3537,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.8,
+          "decode_s": 56.1,
+          "per_frame_psnr": [
+            26.21,
+            26.3,
+            26.33,
+            26.36,
+            26.36,
+            26.33,
+            26.34,
+            26.31,
+            26.33,
+            26.41,
+            26.5,
+            26.45,
+            26.45,
+            26.54,
+            26.57,
+            26.53,
+            26.51,
+            26.56,
+            26.61,
+            26.58,
+            26.58,
+            26.6,
+            26.61,
+            26.58,
+            26.53,
+            26.53,
+            26.52,
+            26.44,
+            26.4,
+            26.38,
+            26.28,
+            26.16,
+            26.07
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ShakeNDry",
+          "gop": 7,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 26.34,
+          "MS_SSIM": 0.7652,
+          "LPIPS": 0.3567,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            26.5,
+            26.57,
+            26.57,
+            26.55,
+            26.52,
+            26.54,
+            26.54,
+            26.48,
+            26.41,
+            26.47,
+            26.53,
+            26.46,
+            26.41,
+            26.43,
+            26.4,
+            26.34,
+            26.33,
+            26.37,
+            26.38,
+            26.32,
+            26.27,
+            26.31,
+            26.32,
+            26.26,
+            26.19,
+            26.24,
+            26.24,
+            26.16,
+            26.16,
+            26.13,
+            26.09,
+            25.97,
+            25.92
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "ShakeNDry",
+          "gop": 8,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 26.1,
+          "MS_SSIM": 0.7575,
+          "LPIPS": 0.3812,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.7,
+          "decode_s": 56.0,
+          "per_frame_psnr": [
+            26.1,
+            26.22,
+            26.25,
+            26.23,
+            26.23,
+            26.25,
+            26.23,
+            26.15,
+            26.14,
+            26.25,
+            26.26,
+            26.23,
+            26.2,
+            26.23,
+            26.2,
+            26.15,
+            26.12,
+            26.17,
+            26.15,
+            26.1,
+            26.03,
+            26.09,
+            26.09,
+            26.03,
+            25.99,
+            26.06,
+            26.06,
+            25.99,
+            25.96,
+            25.93,
+            25.85,
+            25.74,
+            25.69
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        }
+      ],
+      "avg_PSNR": 25.66,
+      "avg_LPIPS": 0.3923,
+      "avg_BPP": 0.002999,
+      "avg_encode_s": 52.6,
+      "avg_decode_s": 55.9
+    },
+    {
+      "sequence": "YachtRide",
+      "gop_results": [
+        {
+          "sequence": "YachtRide",
+          "gop": 0,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.61,
+          "MS_SSIM": 0.8499,
+          "LPIPS": 0.1697,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.2,
+          "decode_s": 55.6,
+          "per_frame_psnr": [
+            25.7,
+            25.95,
+            25.92,
+            25.86,
+            25.9,
+            26.1,
+            26.01,
+            25.84,
+            25.85,
+            26.03,
+            25.93,
+            25.83,
+            25.86,
+            25.99,
+            25.89,
+            25.77,
+            25.79,
+            25.83,
+            25.64,
+            25.47,
+            25.52,
+            25.66,
+            25.55,
+            25.36,
+            25.3,
+            25.38,
+            25.24,
+            25.15,
+            25.1,
+            25.16,
+            25.07,
+            24.88,
+            24.72
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "YachtRide",
+          "gop": 1,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.15,
+          "MS_SSIM": 0.8278,
+          "LPIPS": 0.1779,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.4,
+          "decode_s": 55.6,
+          "per_frame_psnr": [
+            24.8,
+            25.1,
+            24.97,
+            25.02,
+            25.11,
+            25.27,
+            25.23,
+            25.15,
+            25.2,
+            25.36,
+            25.29,
+            25.22,
+            25.25,
+            25.42,
+            25.35,
+            25.2,
+            25.17,
+            25.32,
+            25.25,
+            25.14,
+            25.16,
+            25.37,
+            25.3,
+            25.19,
+            25.19,
+            25.34,
+            25.21,
+            25.04,
+            25.03,
+            25.13,
+            24.97,
+            24.74,
+            24.57
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "YachtRide",
+          "gop": 2,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.68,
+          "MS_SSIM": 0.8328,
+          "LPIPS": 0.1618,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.3,
+          "decode_s": 55.6,
+          "per_frame_psnr": [
+            25.26,
+            25.46,
+            25.4,
+            25.36,
+            25.46,
+            25.63,
+            25.67,
+            25.52,
+            25.63,
+            25.71,
+            25.81,
+            25.75,
+            25.85,
+            25.87,
+            25.84,
+            25.82,
+            25.96,
+            25.97,
+            25.94,
+            25.86,
+            25.93,
+            25.94,
+            25.94,
+            25.8,
+            25.8,
+            25.81,
+            25.77,
+            25.6,
+            25.62,
+            25.6,
+            25.49,
+            25.32,
+            25.25
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "YachtRide",
+          "gop": 3,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.67,
+          "MS_SSIM": 0.838,
+          "LPIPS": 0.1609,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.3,
+          "decode_s": 55.7,
+          "per_frame_psnr": [
+            25.4,
+            25.65,
+            25.64,
+            25.59,
+            25.6,
+            25.62,
+            25.59,
+            25.5,
+            25.58,
+            25.6,
+            25.63,
+            25.62,
+            25.71,
+            25.78,
+            25.72,
+            25.63,
+            25.73,
+            25.77,
+            25.82,
+            25.73,
+            25.79,
+            25.78,
+            25.75,
+            25.71,
+            25.81,
+            25.84,
+            25.84,
+            25.73,
+            25.74,
+            25.68,
+            25.67,
+            25.47,
+            25.36
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "YachtRide",
+          "gop": 4,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.47,
+          "MS_SSIM": 0.8439,
+          "LPIPS": 0.1605,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.5,
+          "decode_s": 55.8,
+          "per_frame_psnr": [
+            25.61,
+            25.83,
+            25.86,
+            25.81,
+            25.89,
+            25.96,
+            25.91,
+            25.81,
+            25.87,
+            25.88,
+            25.82,
+            25.68,
+            25.7,
+            25.72,
+            25.64,
+            25.51,
+            25.52,
+            25.54,
+            25.45,
+            25.34,
+            25.39,
+            25.4,
+            25.33,
+            25.18,
+            25.24,
+            25.3,
+            25.12,
+            24.96,
+            25.0,
+            25.04,
+            24.88,
+            24.7,
+            24.59
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "YachtRide",
+          "gop": 5,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.3,
+          "MS_SSIM": 0.8392,
+          "LPIPS": 0.1653,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.4,
+          "decode_s": 55.7,
+          "per_frame_psnr": [
+            24.9,
+            25.19,
+            25.18,
+            25.23,
+            25.34,
+            25.43,
+            25.41,
+            25.35,
+            25.41,
+            25.54,
+            25.43,
+            25.41,
+            25.5,
+            25.53,
+            25.42,
+            25.37,
+            25.44,
+            25.53,
+            25.54,
+            25.42,
+            25.43,
+            25.49,
+            25.39,
+            25.29,
+            25.29,
+            25.36,
+            25.25,
+            25.12,
+            25.1,
+            25.22,
+            25.02,
+            24.8,
+            24.63
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "YachtRide",
+          "gop": 6,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 24.86,
+          "MS_SSIM": 0.824,
+          "LPIPS": 0.1745,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.3,
+          "decode_s": 55.6,
+          "per_frame_psnr": [
+            24.77,
+            25.01,
+            24.9,
+            24.86,
+            24.91,
+            25.08,
+            24.97,
+            24.87,
+            24.89,
+            24.97,
+            24.87,
+            24.83,
+            24.88,
+            25.0,
+            24.88,
+            24.81,
+            24.84,
+            24.94,
+            24.86,
+            24.82,
+            24.88,
+            25.0,
+            24.93,
+            24.84,
+            24.87,
+            24.98,
+            24.88,
+            24.78,
+            24.79,
+            24.88,
+            24.73,
+            24.52,
+            24.36
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "YachtRide",
+          "gop": 7,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.11,
+          "MS_SSIM": 0.812,
+          "LPIPS": 0.1734,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.3,
+          "decode_s": 55.6,
+          "per_frame_psnr": [
+            24.67,
+            24.88,
+            24.83,
+            24.81,
+            24.89,
+            25.09,
+            25.15,
+            25.08,
+            25.14,
+            25.19,
+            25.09,
+            24.99,
+            25.07,
+            25.19,
+            25.15,
+            25.07,
+            25.13,
+            25.2,
+            25.14,
+            25.04,
+            25.08,
+            25.23,
+            25.23,
+            25.15,
+            25.24,
+            25.36,
+            25.31,
+            25.23,
+            25.28,
+            25.33,
+            25.25,
+            25.08,
+            24.92
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        },
+        {
+          "sequence": "YachtRide",
+          "gop": 8,
+          "method": "mr_dlc1_codebook",
+          "PSNR_dB": 25.51,
+          "MS_SSIM": 0.8086,
+          "LPIPS": 0.1734,
+          "BPP": 0.002999,
+          "total_bits": 205200,
+          "bitrate_kbps": 99.49,
+          "encode_s": 52.4,
+          "decode_s": 55.6,
+          "per_frame_psnr": [
+            25.08,
+            25.31,
+            25.26,
+            25.23,
+            25.34,
+            25.47,
+            25.5,
+            25.46,
+            25.58,
+            25.64,
+            25.61,
+            25.54,
+            25.57,
+            25.76,
+            25.75,
+            25.65,
+            25.66,
+            25.78,
+            25.74,
+            25.62,
+            25.59,
+            25.64,
+            25.59,
+            25.49,
+            25.56,
+            25.68,
+            25.57,
+            25.43,
+            25.47,
+            25.5,
+            25.37,
+            25.17,
+            25.08
+          ],
+          "high_freq_mode": "dlc1_codebook",
+          "transition_align": "variance",
+          "dlc2_rank_frac": null,
+          "low_target_from_full": true,
+          "low_target_align": "none",
+          "resolutions": [
+            [
+              480,
+              832
+            ],
+            [
+              720,
+              1280
+            ],
+            [
+              1080,
+              1920
+            ]
+          ],
+          "transition_steps": [
+            6,
+            12
+          ],
+          "K_per_stage": [
+            16384,
+            16384,
+            16384
+          ],
+          "S": 3
+        }
+      ],
+      "avg_PSNR": 25.37,
+      "avg_LPIPS": 0.1686,
+      "avg_BPP": 0.002999,
+      "avg_encode_s": 52.3,
+      "avg_decode_s": 55.6
+    }
+  ],
+  "overall": {
+    "PSNR_dB": 27.42,
+    "LPIPS": 0.2144,
+    "BPP": 0.002999,
+    "avg_encode_s": 52.5,
+    "avg_decode_s": 55.9
+  }
+}

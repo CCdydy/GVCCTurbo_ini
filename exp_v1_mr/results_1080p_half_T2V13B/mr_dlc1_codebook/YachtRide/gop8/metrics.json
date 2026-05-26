@@ -1,0 +1,77 @@
+{
+  "sequence": "YachtRide",
+  "gop": 8,
+  "method": "mr_dlc1_codebook",
+  "PSNR_dB": 25.51,
+  "MS_SSIM": 0.8086,
+  "LPIPS": 0.1734,
+  "BPP": 0.002999,
+  "total_bits": 205200,
+  "bitrate_kbps": 99.49,
+  "encode_s": 52.4,
+  "decode_s": 55.6,
+  "per_frame_psnr": [
+    25.08,
+    25.31,
+    25.26,
+    25.23,
+    25.34,
+    25.47,
+    25.5,
+    25.46,
+    25.58,
+    25.64,
+    25.61,
+    25.54,
+    25.57,
+    25.76,
+    25.75,
+    25.65,
+    25.66,
+    25.78,
+    25.74,
+    25.62,
+    25.59,
+    25.64,
+    25.59,
+    25.49,
+    25.56,
+    25.68,
+    25.57,
+    25.43,
+    25.47,
+    25.5,
+    25.37,
+    25.17,
+    25.08
+  ],
+  "high_freq_mode": "dlc1_codebook",
+  "transition_align": "variance",
+  "dlc2_rank_frac": null,
+  "low_target_from_full": true,
+  "low_target_align": "none",
+  "resolutions": [
+    [
+      480,
+      832
+    ],
+    [
+      720,
+      1280
+    ],
+    [
+      1080,
+      1920
+    ]
+  ],
+  "transition_steps": [
+    6,
+    12
+  ],
+  "K_per_stage": [
+    16384,
+    16384,
+    16384
+  ],
+  "S": 3
+}
