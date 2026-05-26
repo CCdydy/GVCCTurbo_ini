@@ -1,0 +1,48 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+% Choose exactly one track for review submission.
+\usepackage[review,algorithms]{wacv}
+% \usepackage[review,applications]{wacv}
+% \usepackage[review,datasets]{wacv}
+% \usepackage{wacv} % Camera-ready version.
+% \usepackage[pagenumbers]{wacv} % arXiv version with page numbers.
+
+\input{preamble}
+
+\definecolor{wacvblue}{rgb}{0.21,0.49,0.74}
+\usepackage[pagebackref,breaklinks,colorlinks,allcolors=wacvblue]{hyperref}
+
+\def\wacvPaperID{*****}
+\def\confName{WACV}
+\def\confYear{2027}
+
+\title{GVCCTurbo: Multi-Resolution Coding and Predictive Skip for Generative Video Compression}
+
+\author{First Author\\
+Institution1\\
+Institution1 address\\
+{\tt\small firstauthor@i1.org}
+\and
+Second Author\\
+Institution2\\
+First line of institution2 address\\
+{\tt\small secondauthor@i2.org}
+}
+
+\begin{document}
+\maketitle
+\input{sec/0_abstract}
+\input{sec/1_introduction}
+\input{sec/2_related_works}
+\input{sec/3_method}
+\input{sec/4_experiments}
+\input{sec/5_ablations}
+\input{sec/6_conclusion}
+
+{
+    \small
+    \bibliographystyle{ieeenat_fullname}
+    \bibliography{main}
+}
+
+\end{document}

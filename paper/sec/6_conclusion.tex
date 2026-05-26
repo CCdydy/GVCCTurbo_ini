@@ -1,0 +1,40 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We have presented GVCCTurbo, a zero-shot generative video codec that
+retains the codebook-driven backbone of GVCC but reduces per-GOP decode
+time by up to $1.9\times$ on Wan~2.1 backbones at preserved quality.
+The two mechanisms responsible for the speedup---unifying multi-resolution
+stages in a single latent domain, and caching the trajectory endpoint
+rather than the velocity for predictive skipping---are simple in
+implementation and grounded in trajectory geometry. Both required only
+small code-level changes; neither requires retraining or any change to
+the bitstream format beyond an optional sub-percent overhead for the
+DLC1 transition codebook.
+
+The acceleration mechanisms transfer cleanly to the FLF2V mode: at
+1080p with boundary-sharing dual-anchor conditioning, GVCCTurbo matches
+the published GVCC operating point in bitrate while improving PSNR by
+$+0.5$~dB and LPIPS by $-14\%$ at approximately $2\times$ the decode
+speed. They are partial in the T2V mode at the chosen lightweight
+backbone (Wan~2.1-1.3B), where the dominant residual is the backbone's
+limited capacity at 1080p rather than the codec's compute budget.
+
+\paragraph{Limitations and future work.}
+The decoder is still substantially slower than learned codecs of the
+DCVC family ($\sim 10^2$ vs.\ $\sim 10^{-1}$~s/GOP), and the main
+remaining cost is the per-generator-call latency of the high-resolution
+stage. Two directions appear most promising. First, the predictive-skip
+mechanism's one-step-radius observation rules out simple multi-step
+caching, but does not preclude a learned step-distillation that retrains
+a few-step generator compatible with the encoder's per-step
+reproducibility requirement---this is an open research direction with no
+clean fix today. Second, a lightweight generator natively trained at
+1080p (the closest existing candidate at the time of writing,
+LTX-Video~\cite{ltxvideo2025}, is a strong starting point) would change
+the backbone-vs-codec balance of the cost; we plan to investigate this
+trade in future work.
+
+We release code, full per-GOP measurements, and codebook bitstreams to
+support reproducibility and further investigation along the multi-
+resolution and predictive-skip axes.

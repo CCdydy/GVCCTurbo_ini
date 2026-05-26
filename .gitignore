@@ -74,6 +74,26 @@ exp_*/smoke_*.py
 *.mp4
 *.png
 
+# LaTeX intermediate / build artifacts (keep .tex + .bib + .sty + .bst + a
+# tagged draft PDF in paper/; rebuild outputs on the fly via tectonic).
+paper/main.aux
+paper/main.log
+paper/main.out
+paper/main.bbl
+paper/main.blg
+paper/main.toc
+paper/main.synctex.gz
+paper/main.pdf
+
+# Also drop top-level .aux etc if anyone compiles in root
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.toc
+*.synctex.gz
+
 # Allow the qualitative demo bundled with the release
 !demo/*.mp4
 !demo/*.png

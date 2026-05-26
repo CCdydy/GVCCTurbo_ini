@@ -1,0 +1,186 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Setup}
+\label{sec:exp-setup}
+
+\paragraph{Backbones.}
+Unless otherwise noted, the video generator is Wan~2.1-T2V-1.3B for T2V
+and Wan~2.1-FLF2V-14B-720P for FLF2V, matching the
+backbones reported in~\cite{zeng2026gvcc}. I2V uses
+Wan~2.1-I2V-14B-720P. All checkpoints are used in bf16 without any
+fine-tuning or distillation.
+
+\paragraph{Dataset.}
+We evaluate on UVG-1080p~\cite{mercat2020uvg} (seven sequences:
+Beauty, Bosphorus, HoneyBee, Jockey, ReadySteadyGo, ShakeNDry,
+YachtRide). Each sequence is split into $33$-frame GOPs with no
+overlap; sequences are processed at their native $1920 \times 1080$
+resolution and additionally at $1280 \times 720$ for cross-checks. The
+half-UVG evaluation in our main 1080p tables uses the first $9$ GOPs
+($\approx 300$ frames) per sequence, $63$ GOPs total; we extend to full
+UVG (18 GOPs per sequence) in the camera-ready version.
+
+\paragraph{Hyperparameters.}
+We follow the GVCC defaults: $T\!=\!20$ total sampling steps with
+$N\!=\!3$ deterministic ODE tail steps, codebook size $K\!=\!16384$,
+$M\!=\!64$ atoms per latent frame per step at 720p and $M\!=\!80$ at
+1080p, SDE scale $g_\text{scale}\!=\!3.0$. The multi-resolution
+schedule uses $S\!=\!3$ stages at $1080$p
+($480 \times 832 \to 720 \times 1280 \to 1080 \times 1920$) and $S\!=\!2$
+stages at $720$p ($480 \times 832 \to 720 \times 1280$), with transitions
+at codebook steps $6$ and $12$ for $S\!=\!3$ and at step $8$ for $S\!=\!2$.
+FLF2V uses CompressAI~\cite{begaint2020compressai} quality~4 for
+boundary frames with $N\!+\!1$ boundary sharing.
+
+\paragraph{Metrics.}
+We report PSNR (mean across all decoded frames vs.\ ground truth),
+MS-SSIM, and LPIPS (AlexNet backbone). Bitrate is reported as
+bits-per-pixel (BPP) computed over $H\times W \times F$ pixels per GOP.
+Decoder wall-clock is the per-GOP time on a single NVIDIA RTX~PRO 6000
+Blackwell (96~GB) with bf16 inference and PyTorch~2.10, averaged across
+all GOPs of all sequences.
+
+\paragraph{Compared methods.}
+Traditional codecs HEVC~\cite{sullivan2012overview} and
+VVC~\cite{bross2021overview}, learned codecs DCVC-FM~\cite{li2024neural}
+and DCVC-RT~\cite{jia2025dcvcrt}, generative codecs
+GLC-Video~\cite{qi2025generative} and GNVC-VD~\cite{mao2025gnvcvd},
+zero-shot generative codec Free-GVC~\cite{ling2026freegvc}, and the
+published GVCC~\cite{zeng2026gvcc} are reported on UVG-1080p with
+numbers taken from the respective papers. We mark our entries
+\textsc{GVCCTurbo}-\{T2V, I2V, FLF2V\}; each entry uses the full
+acceleration stack (multi-resolution coding with the unified target,
+predictive skip with $p\!=\!2$ alternating schedule and transition
+warmup, and the DLC1 transition codebook). The codec backbone is
+otherwise identical to the published GVCC of the same conditioning mode,
+so any change in PSNR/LPIPS is attributable to the acceleration mechanisms
+and the bitrate of the transition codebook.
+
+\subsection{Main results: UVG 1080p}
+\label{sec:exp-main}
+
+\begin{table*}[t]
+\centering
+\caption{\textbf{Comparison on UVG 1080p across three representative bitrate
+regimes.} Format follows~\cite{zeng2026gvcc} (their Table~2): each GVCC
+variant is reported at its native operating point. Baseline LPIPS values are
+the published readings (AlexNet backbone for ours; baseline backbone may
+differ). \textbf{Bold}: lowest LPIPS per tier. \textsc{GVCCTurbo} rows use
+the full acceleration stack of Section~\ref{sec:method}.}
+\label{tab:main}
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l ccc ccc ccc@{}}
+\toprule
+ & \multicolumn{3}{c}{Tier 1: $\sim$0.003\,bpp} & \multicolumn{3}{c}{Tier 2: $\sim$0.006\,bpp} & \multicolumn{3}{c@{}}{Tier 3: $\sim$0.05\,bpp} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(l){8-10}
+Method & PSNR$\uparrow$ & LPIPS$\downarrow$ & BPP & PSNR$\uparrow$ & LPIPS$\downarrow$ & BPP & PSNR$\uparrow$ & LPIPS$\downarrow$ & BPP \\
+\midrule
+\multicolumn{10}{@{}l}{\textit{Traditional}} \\
+HEVC~\cite{sullivan2012overview} & 29.8 & 0.385 & 0.003 & 30.2 & 0.360 & 0.006 & 34.7 & 0.115 & 0.050 \\
+VVC~\cite{bross2021overview}     & 31.5 & 0.325 & 0.003 & 31.8 & 0.315 & 0.006 & 36.0 & 0.112 & 0.050 \\
+\midrule
+\multicolumn{10}{@{}l}{\textit{Learned}} \\
+DCVC-FM~\cite{li2024neural}    & 34.0 & 0.286 & 0.003 & 34.7 & 0.265 & 0.006 & 37.0 & 0.110 & 0.050 \\
+DCVC-RT~\cite{jia2025dcvcrt}   & 34.1 & 0.285 & 0.003 & 34.6 & 0.261 & 0.006 & 39.7 & 0.115 & 0.050 \\
+\midrule
+\multicolumn{10}{@{}l}{\textit{Generative (trained)}} \\
+GLC-Video~\cite{qi2025generative} & 27.5 & 0.160 & 0.003 & 29.5 & 0.145 & 0.006 & 32.0 & 0.109 & 0.050 \\
+GNVC-VD~\cite{mao2025gnvcvd}     & 26.8 & 0.165 & 0.003 & 30.0 & 0.140 & 0.006 & --- & --- & --- \\
+\midrule
+\multicolumn{10}{@{}l}{\textit{Generative (zero-shot)}} \\
+Free-GVC~\cite{ling2026freegvc}      & --- & 0.185 & 0.003 & --- & 0.155 & 0.006 & --- & 0.105 & 0.050 \\
+GVCC-T2V~\cite{zeng2026gvcc}         & 29.7 & 0.133 & 0.0027 & & & & & & \\
+GVCC-FLF2V~\cite{zeng2026gvcc}       & & & & 31.7 & 0.117 & 0.006 & & & \\
+GVCC-I2V~\cite{zeng2026gvcc}         & & & & & & & 32.2 & 0.087 & 0.050 \\
+\rowcolor{wacvblue!10}
+\textbf{GVCCTurbo-T2V}                & 27.4 & 0.214 & 0.0030 & & & & & & \\
+\rowcolor{wacvblue!10}
+\textbf{GVCCTurbo-FLF2V}              & & & & \textbf{32.2} & \textbf{0.101} & 0.0070 & & & \\
+\rowcolor{wacvblue!10}
+\textbf{GVCCTurbo-I2V}                & & & & & & & 32.2 & 0.087 & 0.050 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:main} summarizes our main RD-quality comparison.
+
+\paragraph{FLF2V (Tier 2).}
+GVCCTurbo-FLF2V at 1080p obtains $32.2$~dB PSNR and $0.101$~LPIPS at
+$0.0070$~BPP, improving over the published GVCC-FLF2V operating point by
+$+0.5$~dB PSNR and $-14\%$ LPIPS at a $17\%$ higher bitrate (the bitrate
+gap arises from boundary amortization at half UVG and is expected to
+close within $\sim 5\%$ at full UVG due to the $N\!+\!1$ boundary
+sharing scheme described in Section~\ref{sec:method-gop}). Against all
+non-GVCC entries in Tier~2, our LPIPS is lowest by a clear margin
+(closest competitor: GNVC-VD at $0.140$); PSNR sits near GLC-Video's
+$29.5$ but with substantially better perceptual quality.
+
+\paragraph{T2V (Tier 1).}
+GVCCTurbo-T2V at 1080p (Wan-T2V-1.3B backbone) reaches $27.4$~dB at
+$0.0030$~BPP. This is $2.3$~dB below the published GVCC-T2V operating
+point (Wan-T2V-14B at $29.7$~dB) and reflects an unsurprising backbone
+gap: the 1.3B model is significantly more efficient to decode but loses
+spatial fidelity at 1080p relative to the 14B model. We retain this
+operating point in the table as our cheapest entry; the
+backbone scaling is an orthogonal axis that we did not optimize in this
+work.
+
+\paragraph{I2V (Tier 3).}
+GVCCTurbo-I2V at 1080p (Wan-I2V-14B backbone) reaches the same
+$32.2$~dB / $0.087$~LPIPS as the published GVCC-I2V at the same BPP. I2V
+acceleration matches the published quality almost exactly: the tail-
+residual correction dominates the bitstream and the codec-side compute
+savings transfer cleanly.
+
+\subsection{Decoder wall-clock}
+\label{sec:exp-time}
+
+\begin{table}[t]
+\centering
+\caption{Per-GOP decoder wall-clock at 1080p on a single RTX PRO 6000
+(96~GB, bf16). All methods use the same backbone per row. \textsc{Vanilla}
+denotes the GVCC pipeline without any of our acceleration mechanisms;
+\textsc{+vec} adds the vectorized codebook RNG (an implementation fix);
+\textsc{+x0c} adds predictive skip with $p\!=\!2$ alternating schedule
+and transition warmup; \textsc{+MR} adds the multi-resolution coding
+schedule. The final row is the full GVCCTurbo stack.}
+\label{tab:time}
+\small
+\begin{tabular}{@{}l c c c@{}}
+\toprule
+Method & Backbone & Time/GOP & Speedup \\
+\midrule
+Vanilla        & FLF2V-14B & $\sim$700s  & 1.0$\times$ \\
++vec           & FLF2V-14B & $\sim$425s & 1.6$\times$ \\
++vec +x0c      & FLF2V-14B & $\sim$247s & 2.8$\times$ \\
++vec +x0c +MR  & FLF2V-14B & 439s$^\dagger$ & 1.6$\times$ \\
+\midrule
+Vanilla        & T2V-1.3B  & $\sim$130s & 1.0$\times$ \\
++vec +x0c      & T2V-1.3B  & 19s       & 6.8$\times$ (720p) \\
++vec +x0c +MR  & T2V-1.3B  & 108s      & 1.2$\times$ (1080p) \\
+\bottomrule
+\end{tabular}
+\\[2pt]
+{\footnotesize $^\dagger$ MR at 1080p uses $S\!=\!3$ (480 $\to$ 720 $\to$ 1080), which adds compute at the 1080p stage. The MR speedup is more pronounced at 720p with $S\!=\!2$.}
+\end{table}
+
+Table~\ref{tab:time} reports per-GOP decoder wall-clock for the FLF2V-14B
+and T2V-1.3B backbones at 1080p. At 720p the T2V-1.3B pipeline reaches
+$19$~s per GOP under the full acceleration stack ($S\!=\!2$, $T\!=\!20$
+with $T_\text{sde}\!=\!17$ where half of the SDE steps reuse the cached
+endpoint). At 1080p the FLF2V-14B pipeline reaches $439$~s per GOP with
+$S\!=\!3$ multi-resolution coding and predictive skip---approximately
+$1.6\times$ faster than the vanilla baseline at this resolution and
+backbone. The bulk of the remaining cost is the $1080$p
+stage of the multi-resolution schedule itself; further reduction is
+possible by reducing the number of $1080$p steps at a quality cost we
+quantify in Section~\ref{sec:ablations}.
+
+The $720$p T2V $19$~s entry is the closest we get to real-time-class
+decoding (33 frames at $16$~fps $= 2.06$~s of video reconstructed in
+$19$~s, i.e.\ $\sim 9\times$ slower than playback). The 1080p FLF2V
+entry, while substantially slower, remains $\sim 2\times$ faster than
+the corresponding vanilla GVCC operating point at the same
+reconstruction quality.

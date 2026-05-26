@@ -1,0 +1,240 @@
+\section{Method}
+\label{sec:method}
+
+We treat each $F$-frame GOP as the unit of compression. The decoder
+reconstructs the GOP by running a pretrained rectified-flow video
+generator forward for $T$ discrete steps; the encoder selects per-step
+codebook indices so that the resulting trajectory matches the ground-truth
+GOP. Section~\ref{sec:method-pipeline} states this codec backbone in
+codec-centric terms (inherited from~\cite{zeng2026gvcc,vaisman2025turboddcm}
+in compact form), and the remaining subsections describe the two
+acceleration mechanisms.
+
+\subsection{Codec backbone}
+\label{sec:method-pipeline}
+
+\paragraph{Encoder/decoder pipeline.}
+A pretrained 3D VAE maps a GOP $\mathbf{V}\!\in\!\mathbb{R}^{F\times H\times W\times 3}$
+to a latent $\mathbf{x}_0\!\in\!\mathbb{R}^{F_l\times H_l\times W_l\times C}$.
+The decoder is a rectified-flow video generator whose ODE
+$\dot{\mathbf{x}}_t \!=\! \mathbf{u}_\theta(\mathbf{x}_t, t)$ transports
+samples from $t\!=\!1$ (pure noise) to $t\!=\!0$ (clean latent). We
+discretize this trajectory at $T$ timesteps $\{t_k\}_{k=1}^T$ and inject
+stochastic innovations at the first $T_\text{sde}$ of them, leaving an
+$N\!=\!T\!-\!T_\text{sde}$-step deterministic ODE tail:
+\begin{equation}
+\mathbf{x}_{t_{k+1}} = \mathbf{x}_{t_k} \!-\! f_{t_k}\!\Delta t_k + g_{t_k}\sqrt{\Delta t_k}\,\mathbf{z}^*_{k},
+\label{eq:sde-step}
+\end{equation}
+where $f_{t_k}, g_{t_k}$ are the SDE drift and diffusion coefficients
+derived from $\mathbf{u}_\theta$ as in~\cite{zeng2026gvcc}, and
+$\mathbf{z}^*_{k}$ is the per-step innovation that the encoder
+\emph{transmits} via a $\log_2(K)$-bit codebook index together with a sign
+bit, per latent frame. The full bitstream therefore consists of
+$T_\text{sde}\!\cdot\! F_l \!\cdot\! M\!\cdot\!(\log_2 K + 1)$ codebook
+bits per GOP, plus any boundary-frame bits required by the conditioning
+mode (Section~\ref{sec:method-gop}).
+
+\paragraph{Codebook construction.}
+We use the multi-atom construction of Turbo-DDCM~\cite{vaisman2025turboddcm}:
+at step $k$ and latent frame $f$, the encoder generates $K$ i.i.d.\
+Gaussian atoms with a deterministic seed shared by both sides, computes
+inner products with the per-frame residual
+$\mathbf{r}_{k,f} \!=\! \mathbf{x}_{0,f} \!-\! \hat{\mathbf{x}}_{0|t_k,f}$,
+and transmits the $M$ atoms with the largest absolute inner product
+together with their signs. The decoder regenerates the same $K$ atoms,
+indexes into them, and reconstructs $\mathbf{z}^*_{k,f}$ as a unit-variance
+sum.
+
+\paragraph{Cost.}
+A single decode requires $T$ video-generator evaluations and $T_\text{sde}$
+codebook reconstructions. At $T\!=\!20$, $N\!=\!3$, $K\!=\!16384$,
+$M\!=\!80$, the per-GOP decoder cost on a 14B-parameter Wan~2.1 model at
+$1080$p is approximately $700$~s on an RTX~PRO 6000. The two
+acceleration mechanisms below target the dominant cost---the per-step
+generator evaluation---without changing the codec backbone.
+
+\subsection{Multi-resolution coding with a unified target}
+\label{sec:method-mr}
+
+\paragraph{Resolution schedule.}
+We replace the single-resolution trajectory with an $S$-stage progressive
+schedule, $s\!=\!0,\ldots,S\!-\!1$, where stage $s$ operates on a latent of
+spatial size $(H_l^{(s)}, W_l^{(s)})$ with
+$H_l^{(0)} \!\le\! \cdots \!\le\! H_l^{(S-1)} \!=\! H_l$. Stage $s$
+denoises for $\tau_s$ codebook steps; at transition step $\tau_{s\to s+1}$
+the trajectory is lifted to the next resolution via a 2D DCT zero-pad in
+the new band:
+\begin{equation}
+\bar{\mathbf{x}}^{(s+1)}_{t_k} = \mathcal{T}^{-1}\!\Bigl(
+\text{Embed}\bigl(\mathcal{T}(\mathbf{x}^{(s)}_{t_k})\bigr) + t_k\,\boldsymbol{\epsilon}^{(s+1)}_H
+\Bigr),
+\label{eq:transition}
+\end{equation}
+where $\mathcal{T}$ is the spatial DCT, $\text{Embed}$ pads the new
+high-frequency band with zeros, and $\boldsymbol{\epsilon}^{(s+1)}_H$ is a
+fresh Gaussian sample on that band. Equation~\ref{eq:transition} is
+spectrally correct: the low band passes through unchanged and the new band
+matches the marginal distribution expected by the generator at the new
+resolution and timestep $t_k$.
+
+\paragraph{The target-domain mismatch.}
+For the encoder to drive the low-stage trajectory, it needs a low-stage
+ground-truth latent $\mathbf{x}_0^{(s)}$. The natural choice is
+\begin{equation}
+\mathbf{x}_0^{(s),\,\text{naive}} \;=\; \mathrm{VAE}^{(s)}\bigl(\mathrm{down}(\mathbf{V})\bigr),
+\label{eq:naive-target}
+\end{equation}
+i.e., spatially downsample the pixel video and re-encode at the lower
+resolution. This is what a single-resolution codec would do at each scale
+independently. The decoder, however, does \emph{not} produce
+$\mathbf{x}_0^{(s),\,\text{naive}}$ at the end of stage $s$: it produces
+the trajectory whose low band, after Eq.~\ref{eq:transition} lifts it,
+agrees with $\mathcal{T}_L(\mathrm{VAE}(\mathbf{V}))$---the DCT-low
+projection of the \emph{high-resolution} latent. The two are different
+objects:
+\begin{equation}
+\mathrm{VAE}^{(s)}\bigl(\mathrm{down}(\mathbf{V})\bigr) \;\neq\; \mathcal{T}_L\bigl(\mathrm{VAE}(\mathbf{V})\bigr),
+\label{eq:mismatch}
+\end{equation}
+because the VAE encoder is nonlinear and its receptive field on the
+downsampled pixel support is not the corresponding DCT projection of its
+receptive field on the full-resolution support. On UVG with the Wan~2.1
+VAE we measure a relative gap
+$\|\mathrm{lhs}-\mathrm{rhs}\| / \|\mathrm{rhs}\| \approx 0.41$ at
+$t\!=\!0$ on the low band. The encoder under
+Eq.~\ref{eq:naive-target} drives the trajectory toward an object the
+decoder cannot produce; the high-band fill at transition cannot recover
+the mismatch.
+
+\paragraph{Fix: unify both stages in the high-resolution latent domain.}
+We replace Eq.~\ref{eq:naive-target} with
+\begin{equation}
+\mathbf{x}_0^{(s),\,\text{ours}} \;=\; \mathcal{T}_L\bigl(\mathrm{VAE}(\mathbf{V})\bigr),
+\label{eq:lp-target}
+\end{equation}
+i.e., encode the pixel video \emph{once} at full resolution and project to
+the low band by DCT truncation. Both stages now reference the same latent
+$\mathbf{x}_0 \!=\! \mathrm{VAE}(\mathbf{V})$, observed at different spectral
+bandwidths. Transition (Eq.~\ref{eq:transition}) stops being a domain
+change and becomes pure band expansion: stage $s$ converges to
+$\mathcal{T}_L(\mathbf{x}_0)$, and stage $s\!+\!1$ adds
+$\mathcal{T}_H(\mathbf{x}_0)$, recovering the same $\mathbf{x}_0$ that the
+encoder is matching against. The bitstream is unchanged; only the
+encoder's matching target moves to a spectrally consistent reference.
+
+\paragraph{Transition codebook.}
+At the transition step $\tau_{s\to s+1}$, the newly opened high band
+$\boldsymbol{x}_{t_k}^{H_{s+1}}$ is by default filled with pure noise
+$t_k \boldsymbol{\epsilon}_H$ (Eq.~\ref{eq:transition}). The encoder
+knows the ideal high-band content
+$(1-t_k)\,\mathcal{T}_{H_{s+1}}(\mathbf{x}_0)$, so the
+trajectory-consistent residual is
+$\mathbf{r}_{H_{s+1}} = (1-t_k)\,\mathcal{T}_{H_{s+1}}(\mathbf{x}_0)$.
+We transmit one additional codebook atom per latent frame at this step,
+selected by inner product with $\mathbf{r}_{H_{s+1}}$. This costs
+$<1\%$ of the per-GOP bit budget but recovers up to $0.4$~dB PSNR over
+random high-band fill (Section~\ref{sec:ablations}).
+
+\subsection{Predictive skip via clean-endpoint caching}
+\label{sec:method-skip}
+
+The dominant per-step cost is the video-generator evaluation
+$\mathbf{u}_\theta(\mathbf{x}_t, t)$. We aim to replace approximately
+half of these evaluations along the codebook-driven trajectory.
+
+\paragraph{Why velocity caching fails.}
+The naive choice is to cache the velocity itself:
+\begin{equation}
+\mathbf{u}^{\,\text{naive}}_{k+1} \;=\; \mathbf{u}_\theta(\mathbf{x}_{t_k}, t_k),
+\label{eq:u-cache}
+\end{equation}
+i.e., reuse the previous step's direction. This silently drifts:
+$\mathbf{u}_\theta$ is a function of both $\mathbf{x}$ and $t$, and the
+trajectory has moved away from $\mathbf{x}_{t_k}$ by both a deterministic
+drift and an encoder-injected codebook innovation in
+Eq.~\ref{eq:sde-step}. The cached direction is computed at a stale
+state, not the current one.
+
+\paragraph{The fix: cache the trajectory endpoint.}
+Under the linear flow interpolant
+$\mathbf{x}_t = (1-t)\,\mathbf{x}_0 + t\,\boldsymbol{\epsilon}$, the
+generator's MMSE estimate of $\mathbf{x}_0$ at any point on the
+trajectory is
+\begin{equation}
+\hat{\mathbf{x}}_{0|t_k} \;=\; \mathbf{x}_{t_k} - t_k\,\mathbf{u}_\theta(\mathbf{x}_{t_k}, t_k).
+\label{eq:x0-hat}
+\end{equation}
+$\hat{\mathbf{x}}_{0|t_k}$ is, geometrically, where the model thinks the
+trajectory ends. We cache this endpoint instead. When we skip the
+generator call at step $k\!+\!1$, we recover an approximate velocity from
+the cached endpoint and the \emph{current} state and time:
+\begin{equation}
+\tilde{\mathbf{u}}_{k+1} \;=\; \bigl(\mathbf{x}_{t_{k+1}} - \hat{\mathbf{x}}_{0|t_k}\bigr) \,/\, t_{k+1}.
+\label{eq:u-tilde}
+\end{equation}
+This is valid up to a local linearization around $\hat{\mathbf{x}}_{0|t_k}$:
+because the clean endpoint is invariant along the deterministic part of
+the trajectory under linear flow, only the codebook innovation between
+steps $k$ and $k\!+\!1$ moves the endpoint, and that movement is small
+relative to the cached value. Crucially, the full SDE/codebook correction
+in Eq.~\ref{eq:sde-step} is preserved at the skipped step; only the
+generator query is replaced.
+
+\paragraph{Schedule and warmup.}
+We adopt the fixed alternating schedule
+$k\;\text{is run}\Leftrightarrow k\!\equiv\!k_0\pmod 2$, where $k_0$ is the
+first SDE step in the current resolution stage. At every transition the
+cache is invalidated (the spatial resolution and therefore the operating
+domain changes), and we additionally delay the first post-transition skip
+by one step (\emph{transition warmup}): the cache is rebuilt at step
+$\tau_{s\to s+1}\!+\!1$ before being reused at step
+$\tau_{s\to s+1}\!+\!2$. The number of generator calls is unchanged
+relative to the no-warmup schedule; the only difference is which step's
+output drives the first post-transition skip.
+
+\paragraph{One-step radius.}
+Empirically the cache is locally valid for one skipped step. We tested
+adaptive variants that allowed two or more consecutive skips when a
+running per-step error estimate fell below a threshold; quality collapsed
+as soon as the cap of two was actually triggered (Section~\ref{sec:ablations}).
+The mechanism is recursive cache staleness: the second skipped step plugs
+an already-extrapolated state back into the same linearization, and the
+error compounds. This radius-of-one observation rules out a large family
+of more aggressive schedules and identifies the fixed alternating pattern
+as Pareto-optimal under this caching scheme.
+
+\subsection{GOP-level conditioning modes}
+\label{sec:method-gop}
+
+We retain the three GOP-conditioning modes of
+GVCC~\cite{zeng2026gvcc} and apply both acceleration mechanisms
+uniformly across them.
+
+\paragraph{T2V (intra-only).}
+Each GOP is generated unconditionally from text. The per-GOP bitstream
+consists of codebook bits only and the operating point is the lowest in
+our set ($\le 0.005$~bpp at the bitrate hyperparameters of
+Section~\ref{sec:experiments}). This is the analogue of an all-I-frame
+codec.
+
+\paragraph{I2V with autoregressive chaining.}
+The first GOP takes the ground-truth first frame of the sequence as a
+``free'' anchor; subsequent GOPs reuse the decoded last frame of the
+previous GOP as their anchor, avoiding repeated transmission of boundary
+frames. To suppress drift in the high-noise tail latent frames, we apply
+a small quantized residual correction (8-bit, last latent frame only)
+that the encoder transmits as a few hundred bytes per GOP.
+
+\paragraph{FLF2V with boundary sharing.}
+Each GOP is conditioned on both its first and last frames. For a sequence
+of $N$ GOPs, we transmit $N\!+\!1$ boundary frames (compressed with
+CompressAI~\cite{begaint2020compressai} at quality 4): the first GOP
+transmits two frames; each subsequent GOP reuses the previous GOP's
+last frame as its own first and transmits only one new last frame. This
+boundary-sharing scheme amortizes the boundary cost over long sequences
+and provides dual temporal anchors that reduce per-frame variance within
+each GOP.
+
+The three modes occupy distinct points on the rate-quality plane:
+Section~\ref{sec:experiments} reports them jointly.

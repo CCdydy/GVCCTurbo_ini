@@ -1,0 +1,77 @@
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Traditional and learned video codecs.}
+Standardized hybrid codecs HEVC~\cite{sullivan2012overview} and
+VVC~\cite{bross2021overview} structure a sequence into intra (I), predicted
+(P), and bidirectional (B) frames, transmitting residuals against motion-
+compensated predictions through DCT and entropy coding. Learned video
+codecs largely retain this GOP layout but replace each component with
+neural modules: DCVC and its
+descendants~\cite{li2024neural,jia2025dcvcrt} use learned conditional
+entropy models and feature-space prediction. These methods now match or
+exceed VVC in PSNR at the standard 0.05--0.20~bpp operating range with
+real-time-class decode speeds, but their RD curves rapidly flatten below
+$0.01$~bpp.
+
+\paragraph{Generative video compression.}
+A separate line of work uses generative models to sample a plausible
+reconstruction at ultra-low bitrates rather than regress to a deterministic
+prediction. GLC-Video~\cite{qi2025generative} and
+GNVC-VD~\cite{mao2025gnvcvd} train end-to-end generative codecs that
+achieve $0.10$--$0.15$ LPIPS at $0.003$~bpp, well below the LPIPS of
+traditional and learned codecs at the same rate, but require dedicated
+training. Free-GVC~\cite{ling2026freegvc} avoids training by performing
+reverse channel coding along the trajectory of a pretrained CogVideoX
+generator. GVCC~\cite{zeng2026gvcc} is the closest predecessor to our
+work: it converts a pretrained rectified-flow video generator into a
+stochastic process and transmits codebook-indexed per-step noise. We
+inherit GVCC's codec backbone---including its Turbo-DDCM~\cite{vaisman2025turboddcm}
+multi-atom codebook construction---and focus exclusively on closing the
+decode-time gap left open by that work.
+
+\paragraph{Multi-resolution diffusion sampling.}
+The idea of running the early high-noise iterations of a diffusion or flow
+model at lower resolution is well established in the sampling literature.
+Spectral Progressive Diffusion (SPD)~\cite{xiao2026spd} provides a clean
+spectral-domain reading: at each timestep $t$, only those frequency bands
+whose signal-to-noise ratio crosses a threshold need to be active, and
+lower bands cross first. Cascaded
+diffusion~\cite{ho2022cascaded} and several text-to-image
+systems~\cite{podell2023sdxl,esser2024sd3} exploit the same structure with
+multiple separately trained models.
+
+Our use of multi-resolution coding differs from these in two ways. First,
+the goal is not to generate plausible samples but to drive an encoder-
+specified target with bit-exact reproducibility on both sides. Second, the
+low and high stages share a single pretrained backbone (no cascading of
+distinct models), which forces a precise specification of \emph{what} the
+low stage's target latent is---a question that does not arise in
+generation, where any plausible low-frequency content is acceptable. The
+target-domain mismatch we identify in Section~\ref{sec:method-mr} arises
+exactly because the low stage is anchored by the encoder, not free to drift.
+
+\paragraph{Accelerating diffusion sampling.}
+Reducing the number of model evaluations is well studied in the
+distillation literature: progressive distillation~\cite{salimans2022progressive},
+consistency models~\cite{song2023consistency,luo2023latent}, and
+Sana~\cite{xie2024sana}-style mobile distillations all aim to bring sample
+counts from $T = 20$--$50$ down to $T \le 4$. These approaches require
+retraining and produce a distilled generator that may not be compatible
+with the encoder's per-step codebook reproducibility requirement. Closer
+to us are inference-time caching schemes that reuse intermediate
+quantities across denoising steps: DeepCache~\cite{ma2024deepcache} caches
+internal U-Net features, and several recent
+works~\cite{kim2025inferencetime} cache velocity outputs directly. We
+adopt the latter family but cache the clean-image \emph{endpoint} rather
+than the velocity (Section~\ref{sec:method-skip}); this choice is forced by
+the codec requirement that the cache stay valid across an SDE step where
+the trajectory state changes by an encoder-selected codebook innovation.
+
+\paragraph{Pretrained video generators as the decoder backbone.}
+We instantiate GVCCTurbo on Wan~2.1~\cite{wan2025}, a rectified-flow
+video generator supporting unconditional (T2V), single-anchor (I2V), and
+dual-anchor (FLF2V) generation modes at $480$p and $720$p+. The choice
+follows~\cite{zeng2026gvcc} for direct comparability; the framework
+inherits whatever resolution and conditioning support the base generator
+provides.

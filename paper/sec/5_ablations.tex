@@ -1,0 +1,211 @@
+\section{Ablations}
+\label{sec:ablations}
+
+We isolate the contribution of each acceleration mechanism on full UVG
+720p with the Wan~2.1-T2V-1.3B backbone, $T\!=\!20$, $M\!=\!64$,
+$K\!=\!16384$, $g_\text{scale}\!=\!3.0$ unless otherwise noted. Decode
+time is reported per GOP.
+
+\subsection{The target-domain mismatch and its fix}
+\label{sec:abl-lpraw}
+
+Table~\ref{tab:abl-mr} compares the naive multi-resolution baseline
+(low-stage target via Eq.~\ref{eq:naive-target}) against the unified
+target (Eq.~\ref{eq:lp-target}, our fix) at $S\!=\!2$ on UVG-720p,
+together with a joint-oracle ceiling that uses the encoder's
+ground-truth high-band content at the transition step (a non-deployable
+upper bound that bounds how much the codebook-driven scheme can recover).
+
+\begin{table}[t]
+\centering
+\caption{Multi-resolution coding with naive vs.\ unified target. Full UVG
+$\times 3$ GOPs at 720p with Wan~2.1-T2V-1.3B, $S\!=\!2$ schedule
+($480\!\to\!720$). $\Delta$ is relative to the single-resolution baseline
+(PSNR $28.72$, BPP $0.00483$).}
+\label{tab:abl-mr}
+\small
+\begin{tabular}{@{}l c c c@{}}
+\toprule
+Target & PSNR (dB) & BPP & $\Delta$PSNR \\
+\midrule
+Single-resolution baseline    & 28.72 & 0.00483 & --- \\
+\midrule
+MR naive (Eq.~\ref{eq:naive-target}) & 27.28 & 0.00481 & $-1.44$ \\
+MR naive + DLC1 transition      & 28.07 & 0.00481 & $-0.65$ \\
+MR naive + joint oracle         & 28.89 & 0.00481 & $-1.26$ \\[2pt]
+\rowcolor{wacvblue!10}
+MR \textbf{unified} (ours)      & 28.50 & 0.00481 & $-0.22$ \\
+\rowcolor{wacvblue!10}
+MR unified + DLC1 transition    & 28.50 & 0.00511 & $-0.22$ \\
+MR unified + joint oracle       & 28.62 & 0.00453 & $-0.10$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Three observations follow from Table~\ref{tab:abl-mr}.
+
+\paragraph{The ceiling is structural under the naive target.}
+The naive multi-resolution scheme suffers a $1.44$~dB PSNR loss versus the
+single-resolution baseline. Adding the DLC1 transition codebook recovers
+half of it ($-0.65$ vs.\ $-1.44$), and even the joint oracle---which
+transmits no bits but assumes a perfect high-band content at
+transition---only reaches $-1.26$. The $1.26$~dB gap to the
+single-resolution baseline is therefore not a codebook expressiveness
+problem; it is fundamental to the codec target.
+
+\paragraph{Magnitude alignment is not the fix.}
+We tried two natural variants of the unified target that rescale
+$\mathcal{T}_L(\mathrm{VAE}(\mathbf{V}))$ to match the per-channel
+std (or norm) of the naive target before use, intending to ``soften'' the
+domain gap. Both \emph{hurt}: by $\approx 0.5$~dB on Bosphorus and
+HoneyBee relative to the raw unified target. Codebook-matching is
+spectrally sensitive, and rescaling re-introduces the domain mismatch in
+a more subtle form.
+
+\paragraph{The fix is essentially one line of code.}
+Replacing Eq.~\ref{eq:naive-target} with Eq.~\ref{eq:lp-target} collapses
+the gap to $-0.22$~dB at the same bitrate. The joint-oracle ceiling under
+the unified target is $-0.10$~dB, so the DLC1 transition codebook
+captures roughly $95\%$ of the remaining recoverable information at
+$<1\%$ bitrate overhead.
+
+\subsection{Predictive skip: caching choice and schedule}
+\label{sec:abl-skip}
+
+Table~\ref{tab:abl-skip} compares no caching, velocity caching, and
+clean-endpoint caching on UVG-720p with Wan~2.1-T2V-1.3B, at the fixed
+alternating $p\!=\!2$ schedule (every other SDE step skipped) with
+transition warmup after the multi-resolution lift.
+
+\begin{table}[t]
+\centering
+\caption{Caching choice for the per-step generator query, $p\!=\!2$
+alternating schedule, full UVG 720p, multi-resolution
+$S\!=\!2$. Time is per-GOP decoder wall-clock; $\Delta$PSNR is relative
+to no caching.}
+\label{tab:abl-skip}
+\small
+\begin{tabular}{@{}l c c c@{}}
+\toprule
+Cache & PSNR (dB) & Time/GOP & $\Delta$PSNR \\
+\midrule
+None (full $T$ generator calls)    & 28.50 & 25s & --- \\
+Velocity cache (Eq.~\ref{eq:u-cache})       & 26.71 & 19s & $-1.79$ \\
+\rowcolor{wacvblue!10}
+\textbf{Clean-endpoint cache} (ours, Eq.~\ref{eq:u-tilde}) & 28.45 & 19s & $-0.05$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The clean-endpoint cache reduces decoder time by $1.32\times$ at a
+$0.05$~dB PSNR cost; the same skip rate with naive velocity caching costs
+$1.79$~dB---a $36\times$ larger PSNR drop. The two schemes are otherwise
+identical (same skip schedule, same number of generator calls); the
+difference comes entirely from \emph{what} is cached. The velocity cache
+is computed at a stale state and the trajectory has moved away from
+$\mathbf{x}_{t_k}$ by both the deterministic drift and the codebook
+innovation between steps $k$ and $k\!+\!1$. The endpoint cache is
+geometrically invariant along the deterministic part of the trajectory,
+so only the codebook-induced shift between steps remains as approximation
+error.
+
+\paragraph{The one-step radius.}
+Table~\ref{tab:abl-cap} ablates the maximum allowed number of
+consecutive skips, holding the average skip rate fixed via an adaptive
+threshold (we transmit a 1-bit-per-SDE-step skip mask in the bitstream
+when adaptivity is on).
+
+\begin{table}[t]
+\centering
+\caption{Adaptive predictive skip with a per-stage cap on consecutive
+skips. HoneyBee, single GOP, 720p, Wan-T2V-1.3B. Threshold tuned to
+keep average skip rate near $50\%$.}
+\label{tab:abl-cap}
+\small
+\begin{tabular}{@{}l c c c@{}}
+\toprule
+Schedule & PSNR (dB) & Time/GOP & Notes \\
+\midrule
+Fixed alternating ($p\!=\!2$, cap $\equiv 1$) & 29.47 & 18s & ours \\
+Adaptive, cap $=\!1$, thr $0.30$               & 29.48 & 19s & robustness mode \\
+Adaptive, cap $=\!2$, thr $0.15$ (triggered)   & 29.08 & 17s & $-0.39$ \\
+Adaptive, no cap, thr $0.40$ (triggered)       & 25.95 & 13s & $-3.52$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Whenever the cap of $2$ is actually triggered (i.e., the adaptive
+controller picks two consecutive skips), quality drops sharply. Removing
+the cap entirely allows long skip runs and quality collapses by
+$3.5$~dB. With a hard cap of $1$, the adaptive controller can only
+\emph{cancel} a would-be-skip when the running per-step error is too
+large, never schedule a faster pattern; quality therefore matches the
+fixed alternating schedule but speed is bounded above by the same.
+\emph{Adaptive caching with cap $\equiv 1$ is a robustness mechanism,
+not a new acceleration frontier}. The fixed alternating schedule is
+Pareto-optimal under the clean-endpoint caching scheme.
+
+\subsection{Stage count and transition placement}
+\label{sec:abl-stages}
+
+Table~\ref{tab:abl-stages} ablates the number of multi-resolution stages
+$S$ and the placement of transition steps on UVG-720p
+(Bosphorus + HoneyBee, $3$ GOPs each, Wan-T2V-1.3B). All entries use
+the unified target and DLC1 transition codebook.
+
+\begin{table}[t]
+\centering
+\caption{Number of multi-resolution stages and transition placement.
+$\tau$ lists the SDE step indices at which each transition occurs.
+$\Delta$PSNR relative to single-resolution baseline ($30.15$~dB).}
+\label{tab:abl-stages}
+\small
+\begin{tabular}{@{}l c c c c@{}}
+\toprule
+Schedule & $S$ & $\tau$ & PSNR (dB) & BPP \\
+\midrule
+Single resolution         & 1 & --- & 30.15 & 0.00483 \\
+\rowcolor{wacvblue!10}
+$480 \!\to\! 720$            & 2 & $\{8\}$    & 28.72 & 0.00481 \\
+$480 \!\to\! 720$ (early $\tau$) & 2 & $\{6\}$ & 28.51 & 0.00481 \\
+$480 \!\to\! 720$ (late $\tau$)  & 2 & $\{10\}$ & 28.65 & 0.00481 \\
+$272 \!\to\! 480 \!\to\! 720$     & 3 & $\{4,12\}$ & 27.76 & 0.00506 \\
+$272 \!\to\! 480 \!\to\! 720$ (oracle) & 3 & $\{4,12\}$ & 28.07 & 0.00451 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\paragraph{$S\!=\!2$ is the sweet spot on Wan~2.1.}
+Two stages with a transition at the midpoint dominate $S\!=\!3$ schedules
+that include a $272$p floor. The drop at $S\!=\!3$ is not a coding
+artifact: even the joint oracle at $S\!=\!3$ ($28.07$~dB) cannot reach
+the $S\!=\!2$ codebook result ($28.72$~dB). The cause is that Wan~2.1
+was not trained at latents below the $480$p band; running the first few
+denoising steps on an even smaller latent operates the generator
+out-of-distribution, and the spectrally lifted state at transition is no
+longer a good initialization for the higher-resolution stage. Moving the
+low floor up to $480$p eliminates the problem; further increasing $S$
+within $[480, 720]$ adds transition overhead without quality benefit.
+
+\paragraph{Transition timing.}
+At $S\!=\!2$, sweeping the transition step in $\{6, 8, 10\}$ yields
+$28.51 / 28.72 / 28.65$~dB respectively. The step-$8$ choice
+(approximately midway through the SDE phase) is best by a small margin
+($+0.21$ over step-$6$). This matches the spectral diffusion
+intuition~\cite{xiao2026spd}: too early a switch deprives the low stage
+of useful denoising, too late a switch wastes generator capacity at high
+resolution.
+
+\subsection{Vectorized codebook RNG: implementation, not algorithm}
+\label{sec:abl-vec}
+
+The Turbo-DDCM~\cite{vaisman2025turboddcm} codebook construction
+generates $K$ atoms per step per latent frame by independent
+\texttt{randn}\,$(D)$ calls. In our implementation, replacing these with
+a single batched \texttt{randn}\,$(K, D)$ per step reduces decoder
+wall-clock by $\approx 1.9\times$ at identical bitstream content
+(seed-consistent on both sides). This is an engineering fix---it does not
+appear in the bitstream---but we report it for transparency: all timing
+numbers in this paper, including the published GVCC baseline rows in
+Table~\ref{tab:time}, include this fix unless explicitly marked
+\textsc{vanilla}.
